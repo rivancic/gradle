@@ -1,0 +1,2 @@
+rootProject.name = 'gradle'
+include 'simple-script-plugin'
