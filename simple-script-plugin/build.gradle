@@ -5,18 +5,45 @@ import java.nio.file.Paths
 group 'com.itshelf'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+/**
+ * This build script contains two tasks. Main functionality is sorting files by their extension.
+ *
+ * They are grouped into "files" group.
+ */
 
 /**
+ * TODO describe gradlew help tasks action, make quiz question out of it.
+ * TODO describe logger or maybe describe it already in the project section.
+ * TODO describe doLast
+ * TODO describe how you can download sources to see the source code and methods.
+ * TODO describe task registering with tasks.register() vs task name {} clojure.
+ *
+ * Level 1
+ * Gradle scales in how you can organize your build logic. The first level of organizing your build logic for the example above, is extracting a method.
+ *
+ * Level 2
+ * Instead of manipulating the script classpath directly, it is recommended to apply plugins that come with their own classpath. For custom build logic, the recommendation is to use a custom plugin.
+ *
+ * Level 3
+ * Extract to binary plugin
+ */
+
+/**
+ * This method sorts files inside specific directory. It does that in the source directory directly and doesn't use
+ * build directory. Files are being sorted based on their extension.
+ *
+ * Files are being resolved with the Project#file() method, as this way we get correct path to the relative path.
+ * Only none hidden files are taken into consideration.
+ *
+ * For every extension new subdirectory is created and file with that extension is moved to matching subdirectory.
+ *
  * TODO: Can parametrize filename containing the files
  */
-task sortFiles {
+tasks.register('sortFiles') {
     group="files"
     description="Sorts files in given directory into subdirectories based on their file extensions"
 
-    doLast {
+    doLast { // action that will be executed
         logger.info "==== Sorting Files ===="
         logger.info ""
 
@@ -29,29 +56,7 @@ task sortFiles {
                     def extension = getExtensionOf fileName
 
                     // Create dir of that extension
-                    logger.info "Before"
                     mkdir "files/" + extension + "/"
-                    logger.info "After"
-
-                    logger.info "Path" + it.toPath()
-
-                    // TODO explain this issue with getting the path when running the project from IDE or from the terminal
-                    // Paths.get("files/" + extension + "/" + fileName)
-                    // vs
-                    // files("files/" + extension + "/" + fileName).asPath
-
-                    // Path/Users/rivancic/Desktop/udemy-gradle-plugin-course/project/gradle/simple-script-plugin/files/stock.jpg
-                    // Path 1 files to files | /Users/rivancic/Desktop/udemy-gradle-plugin-course/project/gradle/simple-script-plugin/files/jpg/stock.jpg
-                    // Path 2 paths.get to files | /Users/rivancic/.gradle/daemon/6.8.2/files/jpg/stock.jpg
-                    // :simple-script-plugin:sortFiles (Thread[Execution worker for ':',5,main]) completed. Took 0.059 secs.
-
-                    //        * What went wrong:
-                    // Execution failed for task ':simple-script-plugin:sortFiles'.
-                    // > java.nio.file.NoSuchFileException: /Users/rivancic/Desktop/udemy-gradle-plugin-course/project/gradle/simple-script-plugin/files/stock.jpg -> files/jpg/stock.jpg
-
-                    logger.info "Path 1 files to files | " + files("files/" + extension + "/" + fileName).asPath
-
-                    logger.info "Path 2 paths.get to files | " + Paths.get("files/" + extension + "/" + fileName).toAbsolutePath()
 
                     // Move file to that directory
                     Files.move(it.toPath(), Paths.get(files("files/" + extension + "/" + fileName).asPath), StandardCopyOption.REPLACE_EXISTING)
@@ -63,7 +68,8 @@ task sortFiles {
 }
 
 /**
- * TODO: create task that unSorts
+ * Is un-sorting the files, which does exactly the opposite of the sortFiles task. It grabs all the files in subdirectories and
+ * moves them tot he root directory. Subdirectories are deleted.
  */
 task unSortFiles {
     group="files"
@@ -74,14 +80,19 @@ task unSortFiles {
         logger.info ""
 
         def rootFile = file("files")
-        transxxFiles(rootFile, rootFile.toPath());
+        unSortRecursively(rootFile, rootFile.toPath())
 
         logger.info ""
         logger.info "======================="
     }
 }
 
-void transxxFiles(File directory, java.nio.file.Path rootDirectory) {
+/**
+ * It recursively walks through directories moves files to the root directory and deletes subdirectories.
+ * @param directory current directory to be un-sorted
+ * @param rootDirectory where the files should be moved
+ */
+void unSortRecursively(File directory, java.nio.file.Path rootDirectory) {
     directory.listFiles().each {
 
         // If its file move it back to root directory
@@ -89,10 +100,11 @@ void transxxFiles(File directory, java.nio.file.Path rootDirectory) {
             Files.move(it.toPath(), Paths.get(rootDirectory.toString(), it.getName()), StandardCopyOption.REPLACE_EXISTING)
         }
 
+        // Remove directories
         if (it.isDirectory()) {
 
             // Go through it
-            transxxFiles it, rootDirectory
+            unSortRecursively it, rootDirectory
 
             // Remove it
             it.delete()
@@ -100,6 +112,12 @@ void transxxFiles(File directory, java.nio.file.Path rootDirectory) {
     }
 }
 
+/**
+ * Get file extension from its file name
+ *
+ * @param filename from which extension will be extracted
+ * @return extension of the file
+ */
 static String getExtensionOf(String filename) {
-    return filename.substring(filename.lastIndexOf(".") + 1);
+    return filename.substring(filename.lastIndexOf(".") + 1)
 }
