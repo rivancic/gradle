@@ -4,6 +4,7 @@ import java.nio.file.Paths
 
 group 'com.itshelf'
 version '1.0-SNAPSHOT'
+name
 
 /**
  * This build script contains two tasks. Main functionality is sorting files by their extension.
@@ -12,12 +13,6 @@ version '1.0-SNAPSHOT'
  */
 
 /**
- * TODO describe gradlew help tasks action, make quiz question out of it.
- * TODO describe logger or maybe describe it already in the project section.
- * TODO describe doLast
- * TODO describe how you can download sources to see the source code and methods.
- * TODO describe task registering with tasks.register() vs task name {} clojure.
- *
  * Level 1
  * Gradle scales in how you can organize your build logic. The first level of organizing your build logic for the example above, is extracting a method.
  *
