@@ -2,17 +2,13 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.nio.file.Paths
 
-group 'com.itshelf'
-version '1.0-SNAPSHOT'
-name
-
 /**
  * This build script contains two tasks. Main functionality is sorting files by their extension.
  *
  * They are grouped into "files" group.
- */
-
-/**
+ *
+ * Abstracting logic -> move to the task? or to plugin intro page
+ *
  * Level 1
  * Gradle scales in how you can organize your build logic. The first level of organizing your build logic for the example above, is extracting a method.
  *
@@ -42,7 +38,12 @@ tasks.register('sortFiles') {
         logger.info "==== Sorting Files ===="
         logger.info ""
 
-        file("files")
+        // Show this in the example
+        // https://stackoverflow.com/questions/37101589/how-to-read-a-properties-files-and-use-the-values-in-project-gradle-script
+        println tasksFilesFolder
+        println project.ext['tasks.files.folder']
+
+        file(tasksFilesFolder)
                 .listFiles({ file -> file.isFile() && !file.isHidden() } as FileFilter)
                 .each {
 
