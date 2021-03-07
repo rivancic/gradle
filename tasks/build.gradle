@@ -5,18 +5,10 @@ import java.nio.file.Paths
 /**
  * This build script contains two tasks. Main functionality is sorting files by their extension.
  *
- * They are grouped into "files" group.
+ * Tasks are grouped into "files" group.
  *
- * Abstracting logic -> move to the task? or to plugin intro page
- *
- * Level 1
- * Gradle scales in how you can organize your build logic. The first level of organizing your build logic for the example above, is extracting a method.
- *
- * Level 2
- * Instead of manipulating the script classpath directly, it is recommended to apply plugins that come with their own classpath. For custom build logic, the recommendation is to use a custom plugin.
- *
- * Level 3
- * Extract to binary plugin
+ * Root folder containing files that have to be sorted is parametrized through Gradle properties with the key [tasks.files.folder].
+ * Property has to be accessed through the project.ext map as direct reference doesn't work if property key is named with the dot notation.
  */
 
 /**
@@ -27,8 +19,6 @@ import java.nio.file.Paths
  * Only none hidden files are taken into consideration.
  *
  * For every extension new subdirectory is created and file with that extension is moved to matching subdirectory.
- *
- * TODO: Can parametrize filename containing the files
  */
 tasks.register('sortFiles') {
     group="files"
@@ -40,10 +30,8 @@ tasks.register('sortFiles') {
 
         // Show this in the example
         // https://stackoverflow.com/questions/37101589/how-to-read-a-properties-files-and-use-the-values-in-project-gradle-script
-        println tasksFilesFolder
-        println project.ext['tasks.files.folder']
 
-        file(tasksFilesFolder)
+        file(project.ext['tasks.files.folder'])
                 .listFiles({ file -> file.isFile() && !file.isHidden() } as FileFilter)
                 .each {
 
@@ -75,7 +63,7 @@ task unSortFiles {
         logger.info "==== Un-Sorting Files ===="
         logger.info ""
 
-        def rootFile = file("files")
+        def rootFile = file(project.ext['tasks.files.folder'])
         unSortRecursively(rootFile, rootFile.toPath())
 
         logger.info ""

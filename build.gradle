@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.itshelf'
+group 'com.itshelf.gradle'
 version '1.0-SNAPSHOT'
 
 repositories {
