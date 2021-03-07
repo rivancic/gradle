@@ -28,9 +28,11 @@ tasks.register('sortFiles') {
         logger.info "==== Sorting Files ===="
         logger.info ""
 
-        // Show this in the example
-        // https://stackoverflow.com/questions/37101589/how-to-read-a-properties-files-and-use-the-values-in-project-gradle-script
-
+        /**
+         * Be aware that as property key uses dot notation it has to be accessed throuth project.ext['key'] expression.
+         * Just referring to tasks.files.folder does not work directly in Gradle.
+         * On the other hand tasksFilesFolder as a key would work just fine, you could access it directly in Gradle.
+          */
         file(project.ext['tasks.files.folder'])
                 .listFiles({ file -> file.isFile() && !file.isHidden() } as FileFilter)
                 .each {
