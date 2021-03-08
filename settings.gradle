@@ -1,3 +1,4 @@
 rootProject.name = 'gradle'
 include 'tasks'
 include 'script-plugin'
+include 'precompiled-script-plugin'
