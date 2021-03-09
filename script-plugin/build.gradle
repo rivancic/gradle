@@ -1,0 +1,9 @@
+/**
+ * From the applied script plugin this project will have access to two additional files tasks.
+ * TODO add description
+ */
+apply from: 'scriptPlugin.gradle'
+
+task testTask{
+  logger.info("Test task")
+}
