@@ -1,4 +1,4 @@
-String baseUrl = 'https://raw.githubusercontent.com/rivancic/gradle/remote-script-plugin/remote-script%3Dplugin/'
+String baseUrl1 = 'https://raw.githubusercontent.com/rivancic/gradle/remote-script-plugin/remote-script%3Dplugin/'
 
-apply from: "${baseUrl}plugin-modules/java-setup-plugin.gradle"
-apply from: "${baseUrl}plugin-modules/junit-test-plugin.gradle"
+apply from: "${baseUrl1}plugin-modules/java-setup-plugin.gradle"
+apply from: "${baseUrl1}plugin-modules/junit-test-plugin.gradle"
