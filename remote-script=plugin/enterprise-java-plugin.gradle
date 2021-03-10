@@ -1,0 +1,5 @@
+apply from: 'plugin-modules/java-setup-plugin.gradle'
+apply from: 'plugin-modules/junit-test-plugin.gradle'
+apply from: 'plugin-modules/integration-testing-plugin.gradle'
+apply from: 'plugin-modules/sonarqube-plugin.gradle'
+apply from: 'plugin-modules/deployment-plugin.gradle'

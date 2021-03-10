@@ -1,0 +1,2 @@
+apply from: 'plugin-modules/java-setup-plugin.gradle'
+apply from: 'plugin-modules/junit-test-plugin.gradle'
