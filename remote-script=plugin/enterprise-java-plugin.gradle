@@ -1,7 +1,7 @@
-String baseUrl1 = 'https://raw.githubusercontent.com/rivancic/gradle/remote-script-plugin/remote-script%3Dplugin/'
+def baseUrl = 'https://raw.githubusercontent.com/rivancic/gradle/remote-script-plugin/remote-script%3Dplugin/'
 
-apply from: "${baseUrl1}plugin-modules/java-setup-plugin.gradle"
-apply from: "${baseUrl1}plugin-modules/junit-test-plugin.gradle"
-apply from: "${baseUrl1}plugin-modules/integration-testing-plugin.gradle"
-apply from: "${baseUrl1}plugin-modules/sonarqube-plugin.gradle"
-apply from: "${baseUrl1}plugin-modules/deployment-plugin.gradle"
+apply from: "${baseUrl}plugin-modules/java-setup-plugin.gradle"
+apply from: "${baseUrl}plugin-modules/junit-test-plugin.gradle"
+apply from: "${baseUrl}plugin-modules/integration-testing-plugin.gradle"
+apply from: "${baseUrl}plugin-modules/sonarqube-plugin.gradle"
+apply from: "${baseUrl}plugin-modules/deployment-plugin.gradle"
