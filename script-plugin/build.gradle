@@ -1,8 +1,9 @@
 /**
  * From the applied script plugin this project will have access to two additional files tasks.
- * TODO add description
+ * TODO add description -> And add versioning example with tags
  */
 apply from: 'scriptPlugin.gradle'
+apply from: 'https://raw.githubusercontent.com/rivancic/gradle/remote-script-plugin/remote-script%3Dplugin/local-java-development-plugin.gradle'
 
 task testTask{
   logger.info("Test task")
