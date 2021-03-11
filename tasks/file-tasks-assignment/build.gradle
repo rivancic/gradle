@@ -1,0 +1,29 @@
+/**
+ * This build script contains two tasks. Main functionality is sorting files by their extension.
+ *
+ * Tasks are grouped into "files" group.
+ *
+ * Root folder containing files that have to be sorted is parametrized through Gradle properties with the key [tasks.files.folder].
+ * Property has to be accessed through the project.ext map as direct reference doesn't work if property key is named with the dot notation.
+ */
+
+/**
+ * This method sorts files inside specific directory. It does that in the source directory directly and doesn't use
+ * build directory. Files are being sorted based on their extension.
+ *
+ * Files are being resolved with the Project#file() method, as this way we get correct path to the relative path.
+ * Only none hidden files are taken into consideration.
+ *
+ * For every extension new subdirectory is created and file with that extension is moved to matching subdirectory.
+ */
+tasks.register('sortFiles') {
+
+}
+
+/**
+ * Is un-sorting the files, which does exactly the opposite of the sortFiles task. It grabs all the files in subdirectories and
+ * moves them tot he root directory. Subdirectories are deleted.
+ */
+task unSortFiles {
+
+}
