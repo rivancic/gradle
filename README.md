@@ -1,17 +1,14 @@
 # Gradle build tool example projects
 
-This repository contains examples of various Gradle features structured in modules
+This repository contains examples of various Gradle features with the emphasys on Gradle plugins. 
+
+Below is the menu for easier navigation between sections.
+
+All examples are written using Groovy Gradle build scripts and additional code in Java. Projects were created with IntelliJ IDEA.
 
 |    Module     |  Description  |  Resources   |
 | ------------- |:-------------:|-------------:|
-| **tasks**     | Implementation of two Gradle tasks which can modify files in specific directory | Task resource  |
-| **script-plugin** | Same tasks that are implemented are extracted to script plugin. The easiest way of extracting tasks. | Script plugin resource |
-| **buildSrc**  | Tasks extracted to precompiled script plugin. They are written in Gradle script files. They are compiled into class files. | [Gradle Precompile Script Plugin User-guide](https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins) |
-| **apply-precompiled-script-plugin** | An example of applying precompiled plugin to a module | [Gradle Precompile Script Plugin User-guide](https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins) | 
-| **remote-script=plugin** | Contains Gradle script with one task that will be used in script-plugin from remote source | Script plugin resource |
-
-**Precompiled plugin resources**
-
-- https://docs.gradle.org/current/samples/sample_convention_plugins.html
-- https://docs.gradle.org/current/userguide/custom_plugins.html
-- https://docs.gradle.org/current/userguide/organizing_gradle_projects.html#organizing_gradle_projects
+| **[task](task/)**     | Implementation of two Gradle tasks which can modify files in specific directory. | [Gradle tasks in-depth](https://docs.gradle.org/current/userguide/more_about_tasks.html)  |
+| **[script-plugin](script-plugin/)** | Tasks implemented in build.gradle are extracted to script plugin. Easiest way to build a plugin. | Script plugin resource |
+| **[precompiled-script-plugin](precompiled-script-plugin/)**  | Going setp further one can extract script plugin to precompiled script-plugin. | [Gradle Precompile Script Plugin User-guide](https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins) |
+| **[binary-plugin](binary-plugin/)**  | Not the fastest way to create a plugin but it gives you the most options regarding extraction of logic and reusability. | [Gradle Precompile Script Plugin User-guide](https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins) |
