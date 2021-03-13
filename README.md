@@ -3,7 +3,7 @@
 This repository contains examples of various Gradle features with the emphasis on Gradle plugins. 
 
 All examples are written using Groovy Gradle build scripts and additional code in Java. Projects were created with IntelliJ IDEA.
-Gradle wrapper (v 6.8.2)
+Every project comes bundled with Gradle wrapper version 6.8.2.
 
 Below is the menu for easier navigation between sections. Every section contains multiple examples or assignments with the focus on a particular topic.
 
@@ -11,7 +11,7 @@ Below is the menu for easier navigation between sections. Every section contains
 | ------------- |:-------------:| -------------:|
 | **[task](task/)** | This directory contains assignments and examples with the focus on Gradle tasks. | Task lecture  |
 | **[script-plugin](script-plugin/)** | Tasks implemented in build.gradle are extracted to script plugin. Easiest way to build a plugin. | Script plugin lecture |
-| **[precompiled-script-plugin](precompiled-script-plugin/)**  | Going setp further one can extract script plugin to precompiled script-plugin. | Precompiled plugin lecture |
-| **[binary-plugin](binary-plugin/)**  | Not the fastest way to create a plugin but it gives you the most options regarding extraction of logic and reusability. | Binary plugin lecture |
+| **[precompiled-script-plugin](precompiled-script-plugin/)**  | Going step further one can extract script plugin into precompiled script plugin. | Precompiled script plugin lecture |
+| **[binary-plugin](binary-plugin/)**  | Not the fastest way to create a plugin, but it gives you the most options regarding extraction of the build logic and reusability. | Binary plugin lecture |
 
 For any changes or additional content check [release notes](https://github.com/rivancic/gradle/releases).
