@@ -69,7 +69,8 @@ dependencyInsight - Displays the insight into a specific dependency in root proj
 
 ### Tips
 
-- To be able to investigate definition of written gradle scripts in INTELLIJ IDEA be sure you have gradlewrapper with all sources 
+- In IntelliJ IDEA you can use gradlewrapper shipped with all sources to investigate classes and methods used in 
+build.gradle script
 - doLast to specify a Gradle action
 - you can help yourself with logger instance
 - You can read gradle project properties from project.ext
