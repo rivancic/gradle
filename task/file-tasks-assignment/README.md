@@ -67,14 +67,23 @@ dependencies - Displays all dependencies declared in root project 'file-tasks-as
 dependencyInsight - Displays the insight into a specific dependency in root project 'file-tasks-assignment'.
 ```
 
-### Tips
+## Tips
 
-- In IntelliJ IDEA you can use gradlewrapper shipped with all sources to investigate classes and methods used in 
-build.gradle script
-- doLast to specify a Gradle action
-- you can help yourself with logger instance
-- You can read gradle project properties from project.ext
-- Method Project#file() gets you relative path to the file from project location
-- Method Project#mkdir() can create new directory
-- java.nio.Files.move() can move file from source to target directory
-- You can use classes from Java java.io package to manage files and folders.
+**General**
+
+- Make sure you have IntelliJ IDEA properly set up, so you will have autocompletion available, you'll be able to investigate 
+source code of Gradle API and debug build.grade script. Check following lecture to find out more !!! TODO link to lecture !!!
+- You can use logger instance to print messages !!! TODO link to logger section !!!
+- You can read gradle project properties from project.ext !!! TODO link to project section !!!
+
+**Tasks**
+
+- With the [Task#doLast()](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html#org.gradle.api.Task:doLast(groovy.lang.Closure)) convenience method you can specify Gradle action for the task, that will run when the task will be executed during execution phase.
+
+**Managing**
+
+- Method [Project#file()](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:file(java.lang.Object)) gets you relative path to the file from project location !!! TODO link to project section !!!
+- Method [Project#mkdir()](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:mkdir(java.lang.Object)) can create new directory [Gradle Creating directories](https://docs.gradle.org/current/userguide/working_with_files.html#sec:creating_directories_example)
+- [java.nio.Files.move()](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/nio/file/Files.html#move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)) can move file from source to target directory
+- You can use all other helper classes from Java [java.io](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/io/package-summary.html) and [java.nio.file](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/nio/file/package-summary.html) packages to manage files and folders.
+
