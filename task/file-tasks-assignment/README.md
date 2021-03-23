@@ -24,11 +24,11 @@ new jpg directory inside provided directory and move image.jpg file inside of it
 
 Example of provided unsorted files
 
-![Unsorted files](content/unsorted-files.png)
+![Unsorted files](readme-content/unsorted-files.png)
 
 After one executes `graldew sortedFiles` command every file from the root of provided file has to be stored in a subfolder based on the file name extension as in the example below:
 
-![Unsorted files](content/sorted-files.png)
+![Unsorted files](readme-content/sorted-files.png)
 
 ### 2) unSortFiles task
 

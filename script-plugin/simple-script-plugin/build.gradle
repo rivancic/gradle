@@ -1,14 +1,71 @@
-plugins {
-    id 'java'
+import org.gradle.api.DefaultTask
+
+/**
+ * From the applied script plugin this project will have access to two additional files tasks.
+ * TODO add description -> And add versioning example with tags
+ * TODO group tasks in remote scripts into customBuild group
+ */
+apply from: 'scriptPlugin.gradle'
+
+//apply from: 'https://raw.githubusercontent.com/rivancic/gradle/remote-script-plugin/remote-script%3Dplugin/enterprise-java-plugin.gradle'
+
+task testTask{
+  logger.info("Test task")
 }
 
-group 'com.itshelf.gradle'
-version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+
+//def taskk = task sortFiles1(type: DefaultTask) {
+//  group="files"
+//  description="Sorts files in given directory into subdirectories based on their file extensions"
+//
+//  doLast {
+//
+//  }
+//}
+
+//tasks.replace('sortFiles').doLast {
+//  println("JojO")
+//}
+
+//tasks.replace('sortFiles');
+
+
+/* task taskToBeReplaced {
+  doLast {
+    println("Action Old")
+  }
+} */
+
+/*tasks.register("taskToBeReplaced") {
+  doLast {
+    println("Action Old")
+  }
+}*/
+
+
+/*tasks.getByPath("taskToBeReplaced").configure {
+  actions.clear()
+  doLast {
+    print("Action New")
+  }
+}*/
+
+/*tasks.replace("sortFiles").configure {
+  actions.clear()
+  doLast {
+    print("Action New")
+  }
+} */
+
+// Override the task
+/*
+tasks.hello.configure {
+  actions.clear()
+  doLast {
+    println("")
+    println("Action new")
+    println("")
+  }
+}*/

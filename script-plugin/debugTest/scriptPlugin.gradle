@@ -1,0 +1,5 @@
+task scriptPluginTask {
+  doLast {
+    println("Script plugin task")
+  }
+}

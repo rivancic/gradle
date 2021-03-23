@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="gradle.precompiled-script-plugin.main" target="14" />
-      <module name="gradle.precompiled-script-plugin.test" target="14" />
-    </bytecodeTargetLevel>
-  </component>
-</project>
