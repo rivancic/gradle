@@ -1,6 +1,8 @@
-# Gradle build tool example projects
+# Gradle Script Plugin
 
-This repository contains examples of various Gradle features structured in modules
+This directory contains assignments and examples with the focus on Gradle script plugins.
+
+TODO fix description
 
 |    Module     |  Description  |  Resources   |
 | ------------- |:-------------:|-------------:|
