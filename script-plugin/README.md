@@ -2,18 +2,10 @@
 
 This directory contains assignments and examples with the focus on Gradle script plugins.
 
-TODO fix description
-
 |    Module     |  Description  |  Resources   |
 | ------------- |:-------------:|-------------:|
-| **file-tasks-assignment**     | Implementation of two Gradle tasks which can modify files in specific directory | Task resource  |
-| **file-tasks-assignment-done** | Same tasks that are implemented are extracted to script plugin. The easiest way of extracting tasks. | Script plugin resource |
-| **apply-precompiled-script-plugin**  | Tasks extracted to precompiled script plugin. They are written in Gradle script files. They are compiled into class files. | [Gradle Precompile Script Plugin User-guide](https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins) |
-| **apply-precompiled-script-plugin** | An example of applying precompiled plugin to a module | [Gradle Precompile Script Plugin User-guide](https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins) | 
-| **remote-script=plugin** | Contains Gradle script with one task that will be used in script-plugin from remote source | Script plugin resource |
+| **[simple-script-plugin](simple-script-plugin)**     | Extraction of files tasks in a separate file. | Simple script plugin  |
+| **[remote-script-plugin](remote-script-plugin)** | Script plugin is being fetched from remote location. | Remote script plugin |
+| **[remote-versioned-script-plugin](remote-versioned-script-plugin)** | Script plugin is being fetched from remote versioned repository. One can define the version of plugin being applied. | Remote versioned script plugin |
+| **[remote-versioned-modularized-script-plugin](remote-versioned-modularized-script-plugin)** | Same as remote versioned plugin with script files clearly separated in separate files by their responsibility. | Remote versioned modular script plugin |
 
-**Precompiled plugin resources**
-
-- https://docs.gradle.org/current/samples/sample_convention_plugins.html
-- https://docs.gradle.org/current/userguide/custom_plugins.html
-- https://docs.gradle.org/current/userguide/organizing_gradle_projects.html#organizing_gradle_projects
