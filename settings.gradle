@@ -1,4 +1,0 @@
-rootProject.name = 'gradle'
-include 'tasks'
-include 'script-plugin'
-include 'apply-precompiled-script-plugin'

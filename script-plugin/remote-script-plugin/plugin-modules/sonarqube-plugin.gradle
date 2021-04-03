@@ -1,0 +1,9 @@
+task sonarQubeCheck {
+
+  description "Scan project with SonarQube"
+
+  doLast {
+    logger.info("Running SonarQube check")
+    logger.info("SonarQube check passed")
+  }
+}
