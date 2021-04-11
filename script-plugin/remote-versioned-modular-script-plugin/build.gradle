@@ -1,0 +1,18 @@
+apply from: 'java-plugin.gradle'
+apply from: 'spring-boot-plugin.gradle'
+apply from: 'unit-test-plugin.gradle'
+apply from: 'cucumber-e2e-test-plugin.gradle'
+// TODO apply sonarqube
+// TODO apply gradle scan
+// TODO apply publishing plugin
+// TODO apply deployment plugin
+
+group = 'com.rivancic'
+version = '0.0.1-SNAPSHOT'
+
+wrapper {
+  version = "6.8.3"
+  distributionType = Wrapper.DistributionType.ALL
+}
+
+

@@ -1,0 +1,2 @@
+apply plugin: org.gradle.api.plugins.JavaPlugin
+sourceCompatibility = '15'

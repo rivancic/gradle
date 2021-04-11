@@ -1,0 +1,111 @@
+/**
+ * Configure custom Cucumber/Selenium integration tests
+ *
+ * Integration tests that are written with the Cucumber BDD testing framework with uses Selenium in the
+ * background to execute the actual tests.
+ *
+ * - Cucumber features have to be provided under the 'src/cucumberE2eTest/resources/features' path.
+ * - TODO still have to implement. package name of the implemented tests have to be specified in the gradle.properties
+ * file under the [cucumbere2etests.packagename].
+ * - Basic dependencies for Cucumber and Selenium testing are already provided with the script plugin.
+ *
+ * From implementation perspective mostly 4 steps are needed to set up execution of custom integration tests.
+ *
+ * 1) Define test source sets
+ * 2) Add the dependencies you need to the appropriate configurations for that source set
+ * 3) Define runtime and compilation classpaths
+ * 4) Add execution task for running specific tests
+ *
+ * - Official gradle resource on how to configure integration tests
+ * https://docs.gradle.org/current/userguide/java_testing.html#sec:configuring_java_integration_tests
+ *
+ * - Setting up Cucumber integration tests  https://cucumber.io/docs/tools/java/#gradle
+ */
+
+/**
+ * 1) Define Cucumber E2E test source sets
+ *
+ * This will set up a new source set called cucumberE2eTest that automatically creates:
+ * - dependencies configuration
+ * - compilation tasks
+ *
+ * concrete:
+ * - cucumberE2eTestImplementation, cucumberE2eTestCompileOnly, cucumberE2eTestRuntimeOnly configurations
+ * - A compileCucumberE2eTestJava task that will compile all the source files under src/cucumberE2eTest/java
+ *   A processCucumberE2eTestResources task that will compile all the resource files under src/cucumberE2eTest/resources
+ */
+sourceSets {
+  cucumberE2eTest {
+    compileClasspath += sourceSets.main.output
+    runtimeClasspath += sourceSets.main.output
+  }
+}
+
+/*
+ * 2) Add the dependencies you need to the appropriate configurations for that source set.
+ *
+ * Generated cucumberE2eTestRuntimeOnly dependency configuration has to extend main implementation dependency configuration
+ * in order to get access to all the dependencies from the main project as that will be needed to execute application logic.
+ *
+ * Note that cucumberE2eTestRuntimeOnly is not resolvable. One can later use cucumberE2eTestRuntimeClasspath that is resolvable
+ * and includes dependencies from cucumberE2eTestRuntimeOnly.
+ */
+configurations {
+  cucumberE2eTestRuntimeOnly.extendsFrom implementation
+}
+
+/**
+ * Any additional dependencies that will be used only by the cucumber E2E tests.
+ */
+dependencies {
+  cucumberE2eTestImplementation("io.cucumber:cucumber-java:latest.release") {
+    because("we want to use Cucumber JVM")
+  }
+  cucumberE2eTestImplementation("io.cucumber:cucumber-junit-platform-engine:latest.release") {
+    because("we want to use Cucumber with JUnit 5")
+  }
+  cucumberE2eTestImplementation('io.cucumber:cucumber-spring:latest.release') {
+    because("we want to use Cucumber with Spring")
+  }
+  cucumberE2eTestImplementation('org.springframework.boot:spring-boot-test:latest.release') {
+    because("we want to use Cucumber with Spring")
+  }
+  cucumberE2eTestImplementation('org.springframework:spring-test:latest.release') {
+    because("we want to use Cucumber with Spring")
+  }
+  cucumberE2eTestImplementation('org.springframework.boot:spring-boot-test-autoconfigure:latest.release') {
+    because("we want to use Cucumber with Spring")
+  }
+  cucumberE2eTestImplementation("org.seleniumhq.selenium:selenium-java:latest.release") {
+    because("we want to use Cucumber with Selenium")
+  }
+}
+
+/**
+ * 4) Define a task that executes Cucumber tests
+ *
+ * Package for the cucumber glue step definitions have to be defined under [cucumbere2etests.packagename] key.
+ *
+ * Creating and configuring a source set automatically sets up the compilation stage,
+ * but it does nothing with respect to running the integration tests.
+ * So the last piece of the puzzle is a custom test task that uses the information from the new source set to
+ * configure its runtime classpath and the test classes:
+ */
+task cucumber() {
+  group "verification"
+  dependsOn assemble, cucumberE2eTestClasses
+  doLast {
+    javaexec {
+      main = "io.cucumber.core.cli.Main"
+      classpath = configurations.cucumberE2eTestRuntimeClasspath + sourceSets.main.output + sourceSets.cucumberE2eTest.output
+      if (project.hasProperty('cucumbere2etests.packagename')) {
+        def cucumberPackageName = project.ext['cucumbere2etests.packagename']
+        args = ['--plugin', 'pretty', '--glue', cucumberPackageName, 'src/cucumberE2eTest/resources/features']
+      } else {
+        throw new InvalidUserDataException("Invalid user data provided. Package name for step definitions has to be provided under the [cucumbere2etests.packagename] key.")
+      }
+    }
+  }
+}
+
+check.dependsOn cucumber
