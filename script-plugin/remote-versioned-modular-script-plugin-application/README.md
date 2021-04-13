@@ -14,7 +14,7 @@ the build script will have out of the box support for:
 - Compiling Java
 - Spring Boot application support 
 - Unit tests
-- Cucumber + Selenium Selenium tests
+- Cucumber + Selenium tests
 
 ## TODO
 
