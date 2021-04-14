@@ -1,4 +1,13 @@
-apply from: 'https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/v1.0/spring-application-plugin.gradle'
+/**
+ * Apply script plugin that contains all the tasks to build:
+ * - Java
+ * - Spring Boot
+ * - JUnit Tests
+ * _ E2E Tests Cucumber + Selenium
+ *
+ * Note that a specific version of the plugin should be provided
+ */
+apply from: "https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/${property('spring-application-plugin.version')}/spring-application-plugin.gradle"
 
 group = 'com.rivancic'
 version = '0.0.1-SNAPSHOT'
