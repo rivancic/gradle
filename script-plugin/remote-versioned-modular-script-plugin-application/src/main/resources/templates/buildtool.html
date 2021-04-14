@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Developing Remote Versioned Modular Gradle Script Plugin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:text="'Build tool selector'"/>
+
+<form action="#" th:action="@{/buildtool}" th:object="${buildTools}" method="post" th:if="${buildTools.getSelectedBuildTool() == null}">
+    <label for="buildTool">Select your favourite build tool </label> <br/>
+    <select id="buildTool" name="buildTool" th:field="*{selectedBuildTool}">
+        <option th:each="buildTool : ${buildTools.getBuildToolList()}" th:value="${buildTool.name}" th:utext="${buildTool.name}"/>
+    </select>
+    <br/>
+    <input type="submit" value="Select">
+</form>
+
+<div th:if="${buildTools.getSelectedBuildTool() != null}">
+    <p th:text="${buildTools.getSelectedBuildTool() + ' supports following languages for build scripts: ' + buildTools.getBuildScriptLanguagesAsText()}"></p>
+</div>
+
+</body>
+</html>
