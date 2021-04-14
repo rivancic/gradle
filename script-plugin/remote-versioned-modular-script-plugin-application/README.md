@@ -29,14 +29,15 @@ After user selects build tool available languages for writing build scripts will
 After application is started it will be available under http://localhost:8080/.
 
 1) One can select build tool 
-![Build Tool Selection](readme-content/modular-tool-selection-open.png)
-
 <p align="center" width="100%">
-<img src="readme-content/modular-tool-selection-open.png" alt="Build Tool Selection" width="500px">
+  <img src="readme-content/modular-tool-selection-open.png" alt="Build Tool Selection" width="500px">
 </p>
 
 2) Available languages for buildscripts are shown
-![Build Tool Selected](readme-content/modular-selected-build-tool.png)
+<p align="center" width="100%">
+  <img src="readme-content/modular-selected-build-tool.png" alt="Build Tool Selected" width="500px">
+</p>
+
    
 Requirements:
 - Application compilation -> Java15
