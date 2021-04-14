@@ -32,7 +32,7 @@ After application is started it will be available under http://localhost:8080/.
 ![Build Tool Selection](readme-content/modular-tool-selection-open.png)
 
 <p align="center" width="100%">
-<img src="readme-content/modular-tool-selection-open.png" alt="Build Tool Selection" style="max-width:100%; width:500px;">
+<img src="readme-content/modular-tool-selection-open.png" alt="Build Tool Selection" style="width:500px;">
 </p>
 
 2) Available languages for buildscripts are shown
