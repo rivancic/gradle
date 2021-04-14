@@ -36,7 +36,7 @@ After application is started it will be available under http://localhost:8080/.
    
 Requirements:
 - Application compilation -> Java15
-- Executing E2E tests -> Chrome Webdriver path specified under [webdriver.chrome.driver]. Check [application.properties](cucumberE2eTest/resources/application.properties)
+- Executing E2E tests -> Chrome Webdriver path specified under [webdriver.chrome.driver]. Check [application.properties](src/cucumberE2eTest/resources/application.properties)
 
 ## TODO Gradle script plugin application
 
