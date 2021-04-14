@@ -16,9 +16,27 @@ the build script will have out of the box support for:
 - Unit tests
 - Cucumber + Selenium Selenium tests
 
-## TODO
+## Application functionality
 
-Explain application functionality + Screenshots
+This is a tiny Spring Boot project that uses Thymeleaf as rendering engine.
+Unit tests are written in Junit5.
+E2E tests are using Cucumber + Selenium.
+
+The application tells you which script languages are supported by different build tools.
+When running the application it loads all available build tools and displays them in the list.
+After user selects build tool available languages for writing build scripts will be shown.
+
+After application is started it will be available under http://localhost:8080/.
+
+1) One can select build tool 
+![Build Tool Selection](readme-content/modular-tool-selection-open.png)
+
+2) Available languages for buildscripts are shown
+![Build Tool Selected](readme-content/modular-selected-build-tool.png)
+   
+Requirements:
+- Application compilation -> Java15
+- Executing E2E tests -> Chrome Webdriver path specified under [webdriver.chrome.driver]. Check [application.properties](cucumberE2eTest/resources/application.properties)
 
 ## TODO Gradle script plugin application
 

@@ -2,7 +2,7 @@
 
 This repository contains examples of various Gradle features with the emphasis on Gradle plugins. 
 
-All examples are written using Groovy Gradle build scripts and additional code in Java. Projects were created with IntelliJ IDEA.
+All examples are written using Groovy Gradle build scripts and additional code in Java 15. Projects were created with IntelliJ IDEA.
 Every project comes bundled with Gradle wrapper version 6.8.3.
 
 Below is the menu for easier navigation between sections. Every section contains multiple examples or assignments with the focus on a particular topic.
