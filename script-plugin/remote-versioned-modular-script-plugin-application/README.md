@@ -24,7 +24,6 @@ other standalone plugins.
   <img src="readme-content/remote-versioned-modular-plugin-application.png" alt="Application applying remote modular script plugin" width="1151">
 </p>
 
-
 ## Application functionality
 
 This is a tiny Spring Boot project that uses Thymeleaf as rendering engine.
@@ -47,11 +46,6 @@ After application is started it will be available under http://localhost:8080/.
   <img src="readme-content/modular-selected-build-tool.png" alt="Build Tool Selected" width="500px">
 </p>
 
-   
 Requirements:
 - Application compilation -> Java15
 - Executing E2E tests -> Chrome Webdriver path specified under [webdriver.chrome.driver]. Check [application.properties](src/cucumberE2eTest/resources/application.properties)
-
-## TODO Gradle script plugin application
-
-Explain + Diagram
