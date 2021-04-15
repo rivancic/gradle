@@ -16,6 +16,15 @@ the build script will have out of the box support for:
 - Unit tests
 - Cucumber + Selenium tests
 
+You can execute all those stages with running `gradle build`
+
+Diagram that show how build.gradle applies remote versioned modular script plugin and how this one includes
+other standalone plugins. 
+<p width="100%">
+  <img src="readme-content/remote-versioned-modular-plugin-application.png" alt="Application applying remote modular script plugin" width="1151">
+</p>
+
+
 ## Application functionality
 
 This is a tiny Spring Boot project that uses Thymeleaf as rendering engine.
@@ -29,12 +38,12 @@ After user selects build tool available languages for writing build scripts will
 After application is started it will be available under http://localhost:8080/.
 
 1) One can select build tool 
-<p align="center" width="100%">
+<p width="100%">
   <img src="readme-content/modular-tool-selection-open.png" alt="Build Tool Selection" width="500px">
 </p>
 
 2) Available languages for buildscripts are shown
-<p align="center" width="100%">
+<p width="100%">
   <img src="readme-content/modular-selected-build-tool.png" alt="Build Tool Selected" width="500px">
 </p>
 
