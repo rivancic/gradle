@@ -18,6 +18,19 @@ the build script will have out of the box support for:
 
 You can execute all those stages with running `gradle build`
 
+In case you use `-i` option at building the project you can see in logs how the script plugins are applied at 
+Gradle project configuration phase:
+
+```
+Configure project :
+...
+Cached resource https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/v1.0/spring-application-plugin.gradle
+Cached resource https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/v1.0/java-plugin.gradle is up-to-date
+Cached resource https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/v1.0/spring-boot-plugin.gradle
+Cached resource https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/v1.0/unit-test-plugin.gradle is up-to-date
+Cached resource https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/v1.0/cucumber-e2e-test-plugin.gradle  
+```
+
 Diagram that show how build.gradle applies remote versioned modular script plugin and how this one includes
 other standalone plugins. 
 <p width="100%">
