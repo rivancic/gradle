@@ -12,9 +12,4 @@ apply from: "https://raw.githubusercontent.com/rivancic/gradle-versioned-modular
 group = 'com.rivancic'
 version = '0.0.1-SNAPSHOT'
 
-wrapper {
-  version = "6.8.3"
-  distributionType = Wrapper.DistributionType.ALL
-}
-
 
