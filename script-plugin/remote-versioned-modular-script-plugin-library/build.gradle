@@ -7,17 +7,6 @@
  */
 apply from: "https://raw.githubusercontent.com/rivancic/gradle-versioned-modular-script-plugin/${property('java-library-plugin.version')}/java-library-plugin.gradle"
 
-// TODO extract to remote script plugin
-repositories {
-  mavenCentral()
-}
-
-dependencies {
-  testImplementation 'org.assertj:assertj-core:3.19.0'
-  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
-  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
-}
-
 group = 'com.rivancic'
 version = '0.0.1-SNAPSHOT'
 
