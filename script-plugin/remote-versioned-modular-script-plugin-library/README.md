@@ -30,10 +30,17 @@ Cached resource https://raw.githubusercontent.com/rivancic/gradle-versioned-modu
 Diagram that show how build.gradle applies remote versioned modular script plugin and how this one includes
 other standalone plugins. 
 <p width="100%">
-  <img src="readme-content/remote-versioned-modular-plugin-library.png" alt="Java library applying remote modular script plugin" width="1151">
+  <img src="readme-content/remote-versioned-modular-plugin-library.png" alt="Java library applying remote modular script plugin" width="1101">
 </p>
 
 ## Library functionality
+
+This library provides you the basic information about Java build tools. One can list all of them or select a specific one.
+Build tool model contains a list of languages supported for a build script.
+
+Main class of this Java library is BuildToolsService. It has two methods:
+- `List<BuildTool> getAll()` which returns a list of BuildTool instance which represents the actual build tool (Maven, Gradle or sbt)
+- `BuildTool get(String buildToolName)` which returns BuildTool matching the name passed in the parameter.
 
 Requirements:
 - Library compilation -> Java15
