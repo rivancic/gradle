@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.6">
+      <module name="gradle" target="14" />
+      <module name="gradle.buildSrc" target="14" />
+      <module name="gradle.buildSrc.main" target="14" />
+      <module name="gradle.buildSrc.test" target="14" />
+      <module name="gradle.main" target="14" />
+      <module name="gradle.precompiled-script-plugin.main" target="14" />
+      <module name="gradle.precompiled-script-plugin.test" target="14" />
+      <module name="gradle.test" target="14" />
+      <module name="tasks.buildSrc" target="14" />
+      <module name="tasks.buildSrc.main" target="14" />
+      <module name="tasks.buildSrc.test" target="14" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
