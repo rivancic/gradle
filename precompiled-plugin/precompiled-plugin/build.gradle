@@ -1,0 +1,24 @@
+/**
+ * TODO check if this description is included in precompiled-script-plugin
+ * TODO Fix this description
+ *
+ * Name of the precompiled script plugin for which the source code resides in the <b>buildSrc</b> is defined by the
+ * file name of the script itself. In case that the filename is <b>precompiled-script-plugin-backup.gradle</b> Then the
+ * plugin id will be filename without the extension (.gradle).
+ *
+ * <ul>
+ *   <li>Filename: precompiled-script-plugin-backup.gradle</li>
+ *   <li>Plugin id: precompiled-script-plugin</li>
+ * </ul>
+ */
+plugins {
+  id "filesPlugin"
+}
+
+// equals
+
+//apply plugin: "filesPlugin"
+
+// equals
+
+//apply plugin: com.rivancic.gradle.precompiled.FilesPlugin
