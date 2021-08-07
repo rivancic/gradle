@@ -50,15 +50,17 @@ tasks.register('sortFiles') {
           def directory = fileMapper.getDirectory(it)
 
           // Create new directory inside build folder
-          mkdir project.layout.buildDirectory.dir("files" + directory + "/")
+          mkdir project.layout.buildDirectory.dir("files" + "/" + directory + "/")
 
           // Copy file to sorted directory inside build directory
-          Files.copy(it.toPath(), project.layout.buildDirectory.dir("files" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
+          Files.copy(it.toPath(), project.layout.buildDirectory.dir("files" + "/" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
         }
 
     logger.info ""
     logger.info "======================="
   }
+
+  dependsOn tasks.named("clean")
 }
 
 tasks.register('clean') {
@@ -99,7 +101,7 @@ static FileDirectoryMapper getFileDirectoryMapper(Project project, Logger logger
     } else if (sortType == "date") {
       return new FileDirectoryDateMapper()
     } else {
-      throw new InvalidUserDataException("Invalid property tasks.files.type value provided [" + sortType + "]. Valid values are ['extension','date']")
+      throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date']")
     }
   } else {
     logger.info("Property [tasks.files.sortType] isn't set, default sorting will be done by creation date")
