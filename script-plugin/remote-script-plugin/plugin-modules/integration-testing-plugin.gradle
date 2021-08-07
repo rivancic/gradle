@@ -1,9 +1,0 @@
-task integrationTest {
-
-  description "Functionality for integration testing the Java project"
-
-  doLast {
-    logger.info("Integration tests running...")
-    logger.info("Integration tests passed")
-  }
-}

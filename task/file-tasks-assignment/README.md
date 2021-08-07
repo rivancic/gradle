@@ -21,7 +21,6 @@ file name extensions of the files.
 * For example if in the provided directory there is a file named image.jpg, then your build script has to create a 
 new jpg directory inside provided directory and move image.jpg file inside of it.
 
-
 Example of provided unsorted files
 
 ![Unsorted files](readme-content/unsorted-files.png)
@@ -30,11 +29,6 @@ After one executes `graldew sortedFiles` command every file from the root of pro
 
 ![Unsorted files](readme-content/sorted-files.png)
 
-### 2) unSortFiles task
-
-Task has to do the opposite of the sortFiles task. When files are sorted in subdirectories with the extension name if 
-one runs `gradlew unSortFiles` then the result should be that all files form provided directory are again located at 
-the root of it and all subfolders have to be deleted.
 
 ### Additional requirements
 

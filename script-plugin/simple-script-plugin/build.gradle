@@ -1,8 +1,0 @@
-import org.gradle.api.DefaultTask
-
-/**
- * From the applied script plugin this project will have access to two additional files tasks.
- * TODO add description -> And add versioning example with tags
- * TODO group tasks in remote scripts into customBuild group
- */
-apply from: 'scriptPlugin.gradle'
