@@ -49,13 +49,32 @@ tasks.register('sortFiles') {
           mkdir "files/" + directory + "/"
 
           // Move file to that directory
-          Files.move(it.toPath(), Paths.get(files("files/" + directory + "/" + it.getName()).asPath), StandardCopyOption.REPLACE_EXISTING)
+          //Files.move(it.toPath(), Paths.get(files("files/" + directory + "/" + it.getName()).asPath), StandardCopyOption.REPLACE_EXISTING)
+          Files.move(it.toPath(), project.layout.buildDirectory.dir("files" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
         }
 
     logger.info ""
     logger.info "======================="
   }
 }
+
+// TODO clean task has to uncomment later
+//tasks.register('clean', CleanTask.class, {
+//  inputDir = project.layout.buildDirectory.asFile.get().exists() ? project.layout.buildDirectory : null
+//})
+
+// ====================
+
+//@Override
+//void apply(Project project) {
+
+  //project.tasks.register('sortFiles', SortFilesTask.class, {
+  //  inputDir = project.file(project.properties.get("tasks.files.folder"))
+  //  outputDir = project.layout.buildDirectory.dir('files').get().asFile.toPath()
+  //})
+
+
+//}
 
 /**
  * Fetches sorting type from [tasks.files.sortType] properties. If property is not present then files will be sorted by the date.
