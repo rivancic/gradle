@@ -1,4 +1,5 @@
 import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.StandardCopyOption
 import java.nio.file.Paths
 import java.nio.file.attribute.FileTime
@@ -16,8 +17,8 @@ import java.time.format.DateTimeFormatter
  */
 
 /**
- * This method sorts files inside specific directory. It does that in the source directory directly and doesn't use
- * build directory. Files are being sorted based on their extension or creation date. Default sorting type is by creation date.
+ * This method sorts files from specific directory and copies them to build/files directory.
+ * Files are being sorted based on their extension or creation date. Default sorting type is by creation date.
  * One can explicitly define sorting type with setting following property key [tasks.files.sortType] to value:
  * <ul>
  *     <li>date</li>
@@ -27,30 +28,32 @@ import java.time.format.DateTimeFormatter
  * Files are being resolved with the Project#file() method, as this way we get correct path to the relative path.
  * Only none hidden files are taken into consideration.
  *
- * Based on sorting type new subdirectory is created and file is moved to matching subdirectory.
+ * Based on sorting type new subdirectory is created in build target and file is copied to matching subdirectory.
  * Name of the subdirectory is defined with FileDirectoryMapper.
  */
 tasks.register('sortFiles') {
   group = "files"
   description = "Sorts files in given directory into subdirectories based on the sorting type [date,extension]"
+
   doLast { // action that will be executed
     logger.info "==== Sorting Files ===="
     logger.info ""
 
     file(project.ext['tasks.files.folder'])
-        .listFiles({ file -> file.isFile() && !file.isHidden() } as FileFilter)
+        .listFiles({file -> file.isFile() && !file.isHidden() } as FileFilter)
         .each {
+
+          logger.info ("Filename: " + it.name)
 
           // Get directory for the file based on the sorting type
           def fileMapper = getFileDirectoryMapper(project, logger)
           def directory = fileMapper.getDirectory(it)
 
-          // Create dir of that extension
-          mkdir "files/" + directory + "/"
+          // Create new directory inside build folder
+          mkdir project.layout.buildDirectory.dir("files" + directory + "/")
 
-          // Move file to that directory
-          //Files.move(it.toPath(), Paths.get(files("files/" + directory + "/" + it.getName()).asPath), StandardCopyOption.REPLACE_EXISTING)
-          Files.move(it.toPath(), project.layout.buildDirectory.dir("files" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
+          // Copy file to sorted directory inside build directory
+          Files.copy(it.toPath(), project.layout.buildDirectory.dir("files" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
         }
 
     logger.info ""
@@ -58,23 +61,27 @@ tasks.register('sortFiles') {
   }
 }
 
-// TODO clean task has to uncomment later
-//tasks.register('clean', CleanTask.class, {
-//  inputDir = project.layout.buildDirectory.asFile.get().exists() ? project.layout.buildDirectory : null
-//})
+tasks.register('clean') {
+  group = "files"
+  description = "Clean build directory"
 
-// ====================
+  doLast {
+    logger.info "==== Clean build ===="
+    logger.info ""
 
-//@Override
-//void apply(Project project) {
+    if (project.layout.buildDirectory.asFile.get().exists()) {
+      try (def stream = Files.walk(project.layout.buildDirectory.asFile.get().toPath())) {
+        stream.sorted(Comparator.reverseOrder())
+            .map(Path::toFile)
+            .peek(file -> logger.info("File to del ${file.toString()}"))
+            .map(File::delete).count()
+      }
+    }
 
-  //project.tasks.register('sortFiles', SortFilesTask.class, {
-  //  inputDir = project.file(project.properties.get("tasks.files.folder"))
-  //  outputDir = project.layout.buildDirectory.dir('files').get().asFile.toPath()
-  //})
-
-
-//}
+    logger.info ""
+    logger.info "======================="
+  }
+}
 
 /**
  * Fetches sorting type from [tasks.files.sortType] properties. If property is not present then files will be sorted by the date.
