@@ -1,5 +1,0 @@
-tasks.register("mainTask") {
-    doLast {
-        println("Main task")
-    }
-}

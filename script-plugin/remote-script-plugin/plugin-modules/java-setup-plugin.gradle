@@ -1,8 +1,0 @@
-task javaBuild {
-
-  description "Setting up java project"
-
-  doLast {
-    logger.info("Basic java project setup")
-  }
-}

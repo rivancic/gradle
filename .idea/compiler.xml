@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="precompiled-binary-plugin-dependency" target="1.8" />
+      <module name="precompiled-binary-plugin-dependency.buildSrc" target="1.8" />
+      <module name="precompiled-binary-plugin-dependency.buildSrc.main" target="1.8" />
+      <module name="precompiled-binary-plugin-dependency.buildSrc.test" target="1.8" />
+      <module name="precompiled-binary-plugin-dependency.main" target="1.8" />
+      <module name="precompiled-binary-plugin-dependency.test" target="1.8" />
+      <module name="precompiled-binary-plugin-example.buildSrc" target="1.8" />
+      <module name="precompiled-binary-plugin-example.buildSrc.main" target="1.8" />
+      <module name="precompiled-binary-plugin-example.buildSrc.test" target="1.8" />
+      <module name="precompiled-plugin.buildSrc" target="1.8" />
+      <module name="precompiled-plugin.buildSrc.main" target="1.8" />
+      <module name="precompiled-plugin.buildSrc.test" target="1.8" />
+      <module name="precompiled-script-plugin.buildSrc" target="1.8" />
+      <module name="precompiled-script-plugin.buildSrc.main" target="1.8" />
+      <module name="precompiled-script-plugin.buildSrc.test" target="1.8" />
+      <module name="remote-versioned-modular-script-plugin-application" target="15" />
+      <module name="remote-versioned-modular-script-plugin-application.cucumberE2eTest" target="15" />
+      <module name="remote-versioned-modular-script-plugin-application.main" target="15" />
+      <module name="remote-versioned-modular-script-plugin-application.test" target="15" />
+      <module name="remote-versioned-modular-script-plugin-library" target="15" />
+      <module name="remote-versioned-modular-script-plugin-library.main" target="15" />
+      <module name="remote-versioned-modular-script-plugin-library.test" target="15" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

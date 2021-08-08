@@ -1,9 +1,14 @@
 import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.StandardCopyOption
 import java.nio.file.Paths
+import java.nio.file.attribute.FileTime
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 /**
- * This build script contains two tasks. Main functionality is sorting files by their extension.
+ * This build script contains two tasks. Main functionality is sorting files by their extension or creation date.
  *
  * Tasks are grouped into "files" group.
  *
@@ -12,98 +17,135 @@ import java.nio.file.Paths
  */
 
 /**
- * This method sorts files inside specific directory. It does that in the source directory directly and doesn't use
- * build directory. Files are being sorted based on their extension.
+ * This method sorts files from specific directory and copies them to build/files directory.
+ * Files are being sorted based on their extension or creation date. Default sorting type is by creation date.
+ * One can explicitly define sorting type with setting following property key [tasks.files.sortType] to value:
+ * <ul>
+ *     <li>date</li>
+ *     <li>extension</li>
+ * </ul>
  *
  * Files are being resolved with the Project#file() method, as this way we get correct path to the relative path.
  * Only none hidden files are taken into consideration.
  *
- * For every extension new subdirectory is created and file with that extension is moved to matching subdirectory.
+ * Based on sorting type new subdirectory is created in build target and file is copied to matching subdirectory.
+ * Name of the subdirectory is defined with FileDirectoryMapper.
  */
 tasks.register('sortFiles') {
-    group="files"
-    description="Sorts files in given directory into subdirectories based on their file extensions"
+  group = "files"
+  description = "Sorts files in given directory into build.files subdirectories based on the sorting type [creationDate,extension]"
 
-    doLast { // action that will be executed
-        logger.info "==== Sorting Files ===="
-        logger.info ""
+  doLast { // action that will be executed
+    logger.info "==== Sorting Files ===="
+    logger.info ""
 
-        /**
-         * Be aware that as property key uses dot notation it has to be accessed throuth project.ext['key'] expression.
-         * Just referring to tasks.files.folder does not work directly in Gradle.
-         * On the other hand tasksFilesFolder as a key would work just fine, you could access it directly in Gradle.
-          */
-        file(project.ext['tasks.files.folder'])
-                .listFiles({ file -> file.isFile() && !file.isHidden() } as FileFilter)
-                .each {
+    file(project.ext['tasks.files.folder'])
+        .listFiles({file -> file.isFile() && !file.isHidden() } as FileFilter)
+        .each {
 
-                    // Extract name and extension of the file
-                    def fileName = it.getName()
-                    def extension = getExtensionOf fileName
+          logger.info ("Filename: " + it.name)
 
-                    // Create dir of that extension
-                    mkdir "files/" + extension + "/"
+          // Get directory for the file based on the sorting type
+          def fileMapper = getFileDirectoryMapper(project, logger)
+          def directory = fileMapper.getDirectory(it)
 
-                    // Move file to that directory
-                    Files.move(it.toPath(), Paths.get(files("files/" + extension + "/" + fileName).asPath), StandardCopyOption.REPLACE_EXISTING)
-                }
+          // Create new directory inside build folder
+          mkdir project.layout.buildDirectory.dir("files" + "/" + directory + "/")
 
-        logger.info ""
-        logger.info "======================="
-    }
-}
-
-/**
- * Is un-sorting the files, which does exactly the opposite of the sortFiles task. It grabs all the files in subdirectories and
- * moves them tot he root directory. Subdirectories are deleted.
- */
-task unSortFiles {
-    group="files"
-    description="Reverts sorting of files; moves all files back to root of the given directory"
-
-    doLast {
-        logger.info "==== Un-Sorting Files ===="
-        logger.info ""
-
-        def rootFile = file(project.ext['tasks.files.folder'])
-        unSortRecursively(rootFile, rootFile.toPath())
-
-        logger.info ""
-        logger.info "======================="
-    }
-}
-
-/**
- * It recursively walks through directories moves files to the root directory and deletes subdirectories.
- * @param directory current directory to be un-sorted
- * @param rootDirectory where the files should be moved
- */
-void unSortRecursively(File directory, java.nio.file.Path rootDirectory) {
-    directory.listFiles().each {
-
-        // If its file move it back to root directory
-        if (it.isFile() && !it.isHidden()) {
-            Files.move(it.toPath(), Paths.get(rootDirectory.toString(), it.getName()), StandardCopyOption.REPLACE_EXISTING)
+          // Copy file to sorted directory inside build directory
+          Files.copy(it.toPath(), project.layout.buildDirectory.dir("files" + "/" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
         }
 
-        // Remove directories
-        if (it.isDirectory()) {
+    logger.info ""
+    logger.info "======================="
+  }
 
-            // Go through it
-            unSortRecursively it, rootDirectory
+  dependsOn tasks.named("clean")
+}
 
-            // Remove it
-            it.delete()
-        }
+tasks.register('clean') {
+  group = "files"
+  description = "Clean build directory"
+
+  doLast {
+    logger.info "==== Clean build ===="
+    logger.info ""
+
+    if (project.layout.buildDirectory.asFile.get().exists()) {
+      try (def stream = Files.walk(project.layout.buildDirectory.asFile.get().toPath())) {
+        stream.sorted(Comparator.reverseOrder())
+            .map(Path::toFile)
+            .peek(file -> logger.info("File to del ${file.toString()}"))
+            .map(File::delete).count()
+      }
     }
+
+    logger.info ""
+    logger.info "======================="
+  }
 }
 
 /**
- * Get file extension from its file name
+ * Fetches sorting type from [tasks.files.sortType] properties. If property is not present then files will be sorted by the date.
  *
- * @param filename from which extension will be extracted
- * @return extension of the file
+ * @param project holding properties.
+ * @param logger for logging missing properties
+ * @return FileDirectoryMapper that actually defines sorting algorithm
  */
-static String getExtensionOf(String filename) {
+static FileDirectoryMapper getFileDirectoryMapper(Project project, Logger logger) {
+  def sortType
+  if (project.hasProperty('tasks.files.sortType')) {
+    sortType = project.ext['tasks.files.sortType']
+    if (sortType == "extension") {
+      return new FileDirectoryExtensionMapper()
+    } else if (sortType == "date") {
+      return new FileDirectoryDateMapper()
+    } else {
+      throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date']")
+    }
+  } else {
+    logger.info("Property [tasks.files.sortType] isn't set, default sorting will be done by creation date")
+    return new FileDirectoryDateMapper()
+  }
+}
+
+/**
+ * Implements mapping a file to specific directory name. The logic is based on the sorting algorithm.
+ */
+interface FileDirectoryMapper {
+  String getDirectory(File file)
+}
+
+/**
+ * Maps file creation date to directory name.
+ */
+class FileDirectoryDateMapper implements FileDirectoryMapper {
+
+  @Override
+  String getDirectory(File file) {
+    FileTime creationTime = Files.getAttribute(Paths.get(file.path), "creationTime") as FileTime
+    DateTimeFormatter fileCreationDateFormat = DateTimeFormatter.ofPattern("MM-YYYY")
+    return fileCreationDateFormat.format(Instant.ofEpochMilli(creationTime.toMillis()).atZone(ZoneOffset.UTC).toLocalDate())
+  }
+}
+
+/**
+ * Maps file extension to directory name.
+ */
+class FileDirectoryExtensionMapper implements FileDirectoryMapper {
+
+  @Override
+  String getDirectory(File file) {
+    return getExtensionOf(file.getName())
+  }
+
+  /**
+   * Get file extension from its file name
+   *
+   * @param filename from which extension will be extracted
+   * @return extension of the file
+   */
+  static String getExtensionOf(String filename) {
     return filename.substring(filename.lastIndexOf(".") + 1)
+  }
 }

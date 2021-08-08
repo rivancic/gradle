@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output-test url="file://$MODULE_DIR$/../../precompiled-plugin/precompiled-binary-plugin-dependency/build/classes/java/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../precompiled-plugin/precompiled-binary-plugin-dependency/src/test" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="precompiled-binary-plugin-dependency.main" />
+  </component>
+</module>

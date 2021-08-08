@@ -1,8 +1,0 @@
-task JUnitTest {
-
-  description "Running JUnit tests"
-
-  doLast {
-    logger.info("JUnit tests running")
-  }
-}
