@@ -1,8 +1,0 @@
-task deployApplication {
-
-  description "Functionality for deploying packaged java project to production environment"
-
-  doLast {
-    logger.info("Your java project has been deployed to production")
-  }
-}

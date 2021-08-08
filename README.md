@@ -1,18 +1,17 @@
-# Gradle Build Tool Example Projects
+# Gradle Plugin Development
 
-This repository contains examples of various Gradle features with the emphasis on Gradle plugins. 
+This repository contains examples and assignments from <a href="https://www.udemy.com/course/gradle-development/?referralCode=770153C3FD82A6D1522C" target="_blank">Gradle Plugin Development</a> Udemy course.
+
+<a href="https://www.udemy.com/course/gradle-development/?referralCode=770153C3FD82A6D1522C" target="_blank"><img src="GradleLogo.png" width="500"></img></a>
 
 All examples are written using Groovy Gradle build scripts and additional code in Java 15. Projects were created with IntelliJ IDEA.
-Every project comes bundled with Gradle wrapper version 7.0 or 6.8.3.
+Every project comes bundled with Gradle wrapper version 7.0 or higher.
 
 Below is the menu for easier navigation between sections. Every section contains multiple examples or assignments with the focus on a particular topic.
 
 |    Module     |  Description  | External Link |
 | ------------- |:-------------:| -------------:|
-| **[task](task/)** | This directory contains assignments and examples with the focus on Gradle tasks. | Task lecture  |
-| **[script-plugin](script-plugin/)** | Script plugin is the easiest possible way of extracting tasks and any additional build logic from original build.gradle file. | Script plugin lecture |
-| **[precompiled-plugin](precompiled-plugin/)**  | Going step further one can extract script plugin into precompiled plugin. | Precompiled plugin lecture |
-| **[binary-plugin](binary-plugin/)**  | Not the fastest way to create a plugin, but it gives you the most options regarding extraction of the build logic and reusability. | Binary plugin lecture |
+| **[task](task/)** | This directory contains assignments and examples with the focus on Gradle tasks. The task is sorting files. Those tasks will be the base for plugin development. | Task lecture  |
 
 For any changes or additional content check [release notes](https://github.com/rivancic/gradle/releases).
 

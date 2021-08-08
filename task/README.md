@@ -2,9 +2,9 @@
 
 This directory contains assignments and examples with the focus on Gradle tasks.
 
-|    Module     |  Description  |  External Link   |
+|    Module     |  Description  |  Course/Assignment Link   |
 | ------------- |:-------------:|-------------:|
-| **[file-tasks-assignment](file-tasks-assignment/)** | Initial Gradle project structure for the assignment to test you knowledge about Gradle tasks  | Task assignment  |
+| **[file-tasks-assignment](file-tasks-assignment/)** | Initial Gradle project structure for the assignment to test you knowledge about Gradle tasks. Instructions are provided in the README.md file  | Task assignment  |
 | **[file-tasks-assignment-done](file-tasks-assignment-done/)** | Implemented solution for the Gradle tasks assignment | Task assignment review |
 
 ## Resources
