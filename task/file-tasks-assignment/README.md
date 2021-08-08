@@ -18,8 +18,8 @@ will be able to find them quickly next time. We can help users with **grouping**
 * Directory relative path is provided in the gradle.properties file under following key: **tasks.files.folder**
 * Sorted files have to be moved to **build/files** directory
 * You have to support 2 types of sorting:
-  * **Extension** - Files with same extension are grouped in the directory named by extension
   * **Creation date** - Files with same creation date month/year will be grouped in the same directory named by creation date month/year
+  * **Extension** - Files with same extension are grouped in the directory named by extension
 * Sorting algorithm can be specified through **tasks.files.sortType** property with values **extension** or **creationDate**.
 * Default sort algorithm is by creationDate
 * For example if in the provided directory there is a file named image.jpg, then your build script has to create a 
