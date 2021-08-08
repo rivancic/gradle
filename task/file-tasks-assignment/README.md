@@ -27,11 +27,15 @@ new jpg directory inside provided build/files and move image.jpg file inside it.
 
 Example of provided unsorted files
 
-![Unsorted files](readme-content/unsorted-files.png)
+![Unsorted files](readme-content/task-assignment-files-unsorted.png)
 
-After one executes `graldew sortedFiles` command every file from the root of provided file has to be stored in a subfolder based on the file name extension as in the example below:
+After one executes `graldew sortedFiles` command, every file from the root of provided directory has to be stored in a build/files subfolder by default based on the creation date as in the example below:
 
-![Unsorted files](readme-content/sorted-files.png)
+![Unsorted files](readme-content/task-assignment-files-sorted-under-build.png)
+
+If in gradle.properties `tasks.files.sortType=extension` is set then the files should be sorted by extension instead:
+
+![Unsorted files](readme-content/task-assignment-files-sorted-by-extensionunder-build.png)
 
 ### 2) clean task
 
