@@ -1,5 +1,9 @@
 # File Tasks Assignment
 
+Instruction video
+
+<a href="https://www.udemy.com/course/gradle-development/learn/practice/1322992/introduction#overview" target="_blank"><img src="readme-content/udemy-task-assignment-instruction.png" width="500"></img></a>
+
 ## Goal 
 
 The main goal of this assignment is that you revisit your knowledge about task creation and managing files within 
