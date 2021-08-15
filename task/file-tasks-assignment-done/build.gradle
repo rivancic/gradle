@@ -1,5 +1,4 @@
 import java.nio.file.Files
-import java.nio.file.Path
 import java.nio.file.StandardCopyOption
 import java.nio.file.Paths
 import java.nio.file.attribute.FileTime
@@ -8,7 +7,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
- * This build script contains two tasks. Main functionality is sorting files by their extension or creation date.
+ * This build script contains two tasks. Main functionality is sorting files by their creation date or extension.
  *
  * Tasks are grouped into "files" group.
  *
@@ -33,17 +32,19 @@ import java.time.format.DateTimeFormatter
  */
 tasks.register('sortFiles') {
   group = "files"
-  description = "Sorts files in given directory into build.files subdirectories based on the sorting type [creationDate,extension]"
+  description = "Sorts files in given directory into build/files subdirectories based on the sorting type [date,extension]"
+
+  dependsOn tasks.named("clean")
 
   doLast { // action that will be executed
-    logger.info "==== Sorting Files ===="
-    logger.info ""
+    logger.quiet "==== Sorting Files ===="
+    logger.quiet ""
 
     file(project.ext['tasks.files.folder'])
         .listFiles({file -> file.isFile() && !file.isHidden() } as FileFilter)
         .each {
 
-          logger.info ("Filename: " + it.name)
+          logger.quiet ("Filename: " + it.name)
 
           // Get directory for the file based on the sorting type
           def fileMapper = getFileDirectoryMapper(project, logger)
@@ -56,33 +57,15 @@ tasks.register('sortFiles') {
           Files.copy(it.toPath(), project.layout.buildDirectory.dir("files" + "/" + directory + "/" + it.getName()).get().asFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
         }
 
-    logger.info ""
-    logger.info "======================="
+    logger.quiet ""
+    logger.quiet "======================="
   }
-
-  dependsOn tasks.named("clean")
 }
 
-tasks.register('clean') {
+tasks.register('clean', Delete) {
   group = "files"
   description = "Clean build directory"
-
-  doLast {
-    logger.info "==== Clean build ===="
-    logger.info ""
-
-    if (project.layout.buildDirectory.asFile.get().exists()) {
-      try (def stream = Files.walk(project.layout.buildDirectory.asFile.get().toPath())) {
-        stream.sorted(Comparator.reverseOrder())
-            .map(Path::toFile)
-            .peek(file -> logger.info("File to del ${file.toString()}"))
-            .map(File::delete).count()
-      }
-    }
-
-    logger.info ""
-    logger.info "======================="
-  }
+  delete project.layout.buildDirectory
 }
 
 /**
@@ -104,7 +87,7 @@ static FileDirectoryMapper getFileDirectoryMapper(Project project, Logger logger
       throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date']")
     }
   } else {
-    logger.info("Property [tasks.files.sortType] isn't set, default sorting will be done by creation date")
+    logger.quiet("Property [tasks.files.sortType] isn't set, default sorting will be done by creation date")
     return new FileDirectoryDateMapper()
   }
 }
@@ -140,7 +123,9 @@ class FileDirectoryExtensionMapper implements FileDirectoryMapper {
   }
 
   /**
-   * Get file extension from its file name
+   * Get file extension from its file name.
+   *
+   * If filename is image.jpg then the method will return "jpg".
    *
    * @param filename from which extension will be extracted
    * @return extension of the file
