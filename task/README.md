@@ -9,6 +9,10 @@ This directory contains assignments and examples with the focus on Gradle tasks.
 
 ## Resources
 
-[Gradle tasks - Gradle Userguide](https://docs.gradle.org/current/userguide/more_about_tasks.html)
+[Authoring Tasks (Gradle Userguide)](https://docs.gradle.org/current/userguide/more_about_tasks.html)
 
-[Gradle Task - Gradle API Documentation](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html)
+[Gradle Task (Gradle API Documentation)](https://docs.gradle.org/current/dsl/org.gradle.api.Task.html)
+
+[Working With Files (Gradle Userguide)](https://docs.gradle.org/current/userguide/working_with_files.html)
+
+[Gradle Delete Task (Gradle API Documentation)](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.Delete.html)
