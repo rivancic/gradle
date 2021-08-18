@@ -14,3 +14,37 @@ Only thing being done in the main [build.gradle](build.gradle) script file is to
 
 
 ![Local Script Plugin](readme-content/local-script-plugin.png)
+
+## Gradle build script invocation
+
+### Default
+
+By default, always **build.gradle** in the root of the project will be processed by Gradle. 
+
+
+
+### Specify build file in settings.gradle
+
+You can define [project build filename](https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/ProjectDescriptor.html#setBuildFileName-java.lang.String-) in **settings.gradle** file.
+
+**settings.gradle**
+```
+rootProject.buildFileName = 'taskPlugin.gradle'
+```
+
+### Specify build file over an CLI option (Deprecated)
+
+To execute taskPlugin script file directly use following command (Will be deprecated in 8.0)
+
+```
+./gradlew sF -b taskPlugin.gradle
+```
+
+
+## Resources
+
+[Script Plugins (Gradle Userguide)](https://docs.gradle.org/current/userguide/plugins.html#sec:script_plugins)
+
+[Gradle CLI - Environment Options (Gradle Userguide)](https://docs.gradle.org/current/userguide/command_line_interface.html#sec:environment_options)
+
+[ProjectDescriptor (Gradle API Documentation)](https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/ProjectDescriptor.html#setBuildFileName-java.lang.String-)
