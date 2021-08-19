@@ -5,7 +5,7 @@ This repository contains examples and assignments from <a href="https://www.udem
 <a href="https://www.udemy.com/course/gradle-development/?referralCode=770153C3FD82A6D1522C" target="_blank"><img src="GradleLogo.png" width="500"></img></a>
 
 All examples are written using Groovy Gradle build scripts and additional code in Java 15. Projects were created with IntelliJ IDEA.
-Every project comes bundled with Gradle wrapper version 7.0 or higher.
+Every project comes bundled with Gradle wrapper version 7.2 or higher.
 
 Below is the menu for easier navigation between sections. Every section contains multiple examples or assignments with the focus on a particular topic.
 
