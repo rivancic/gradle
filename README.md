@@ -13,6 +13,7 @@ Below is the menu for easier navigation between sections. Every section contains
 | ------------- |:-------------:| -------------:|
 | **[task](task/)** | This directory contains assignments and examples with the focus on Gradle tasks. The task is sorting files. Those tasks will be the base for plugin development. | [Task Assignment](https://www.udemy.com/course/gradle-development/learn/practice/1322992/introduction#overview)  |
 | **[script-plugin](script-plugin/)** | Script plugin is the easiest possible way of extracting tasks and any additional build logic from original build.gradle file. | [Script Plugin Lectures](https://www.udemy.com/course/gradle-development/learn/lecture/25307352#overview)  |
+| **[binary-plugin](binary-plugin/)** | Binary plugin is the most powerful way of writing and packaging a plugin. You'll be able to share the plugin within your own private maven repository or through Gradle Plugin Portal. | [Binary Plugin Lectures](https://www.udemy.com/course/gradle-development/learn/lecture/...)  |
 
 For any changes or additional content check [release notes](https://github.com/rivancic/gradle/releases).
 
