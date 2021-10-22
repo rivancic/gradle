@@ -3,6 +3,7 @@
 This project serves as a template for Gradle binary plugin, it contains minimal content to compile it. It also contains
 source code for following lectures:
 - [Gradle Plugin Development - Binary Plugin](https://www.udemy.com/course/gradle-development/learn/lecture/28264772#overview)
+- [Gradle Plugin Development - Publishing - Local Maven Repository](https://www.udemy.com/course/gradle-development/learn/lecture/29080272#overview)
 
 To successfully create a plugin you should:
 - Import `java-gradle-plugin` core Gradle plugin
