@@ -1,7 +1,8 @@
 # Binary Plugin Example
 
 This project serves as a template for Gradle binary plugin, it contains minimal content to compile it. It also contains
-source code for following lecture [Gradle Plugin Development - Binary Plugin](https://www.udemy.com/course/gradle-development/learn/lecture/28264772#overview).
+source code for following lectures:
+- [Gradle Plugin Development - Binary Plugin](https://www.udemy.com/course/gradle-development/learn/lecture/28264772#overview)
 
 To successfully create a plugin you should:
 - Import `java-gradle-plugin` core Gradle plugin
@@ -23,6 +24,19 @@ to proof that the plugin is applied.
 
 In order that plugin descriptor will be generated you have to specify plugins inside the
 `gradlePlugin{}` block.
+
+## Publishing
+
+To be able to publish plugin to a Maven repository you have to apply `maven-publish` plugin, which will give you ability
+of artifact publication.
+
+### Local Maven Publishing
+
+To publish compiled plugin to Local Maven repository you have to run task `publishToMavenLocal`. As a result this plugin will 
+be published to `{user-home}/.m2/repository/com/rivancic/greeting-plugin` directory.
+
+To be able to refenrece this plugin from withing a project you will have to define Local Maven repository inside of
+`pluginManagement{}` block in `settings.gradle` file.
 
 
 ## Resources
