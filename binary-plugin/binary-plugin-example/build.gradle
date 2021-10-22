@@ -1,10 +1,17 @@
 /**
- * Core <a href="https://docs.gradle.org/current/userguide/java_gradle_plugin.html">Java Gradle Plugin</a>. It simplifies
- * compilation and publishing of Gradle binary plugins.
+ * java-gradle-plugin - Core Gradle Plugin, <a href="https://docs.gradle.org/current/userguide/java_gradle_plugin.html">Java Gradle Plugin</a>.
+ * It simplifies compilation and publishing of Gradle binary plugins.
  *
+ * maven-publish - Core Gradle Plugin, <a href="https://docs.gradle.org/current/userguide/publishing_maven.html">Java Gradle Plugin</a>Maven Publish</a>
+ * plugin will make it possible to publish artifacts to Maven repositories.
+ *
+ * com.rivancic.greeting-plugin - if uncommented will apply itself to the Gradle build. It's meant to test the
+ * functionality of the plugin in project itself.
  */
 plugins {
   id 'java-gradle-plugin'
+  id 'maven-publish'
+  // id 'com.rivancic.greeting-plugin' version '0.1.0' // Can be applied after its published to local or private/remote plugin repository
 }
 
 group 'com.rivancic'
