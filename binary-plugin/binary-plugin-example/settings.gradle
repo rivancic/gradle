@@ -5,13 +5,24 @@
  * If you want to specify any additional repository you have to define them in pluginManagement block within
  * setting.gradle file. Remember pluginManagement has to be the first statement inside settings.gradle file.
  *
- * In definition below both Gradle Plugin Portal and Maven Local repository will be taken into account when Gradle
- * will search for defined plugin by its ID and version.
+ * In definition below 3 repositories will be taken ito account when Gradle will search for defined plugin by its ID and version:
+ * - Gradle Plugin Portal,
+ * - Maven Local repository will be taken into account when Gradle
+ * - Custom defined Maven repository where Archiva server is providing the plugins.
  */
 pluginManagement {
   repositories {
     gradlePluginPortal()
     mavenLocal()
+    maven {
+      url = "http://localhost:8080/repository/internal"
+      name = "mavenArchivaPrivate"
+      allowInsecureProtocol = true
+      credentials {
+        username = "$privateArchivaUser"
+        password = "$privateArchivaPassword"
+      }
+    }
   }
 }
 rootProject.name = 'binary-plugin-example'

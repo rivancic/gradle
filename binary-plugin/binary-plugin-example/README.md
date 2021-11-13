@@ -39,9 +39,15 @@ be published to `{user-home}/.m2/repository/com/rivancic/greeting-plugin` direct
 To be able to refenrece this plugin from withing a project you will have to define Local Maven repository inside of
 `pluginManagement{}` block in `settings.gradle` file.
 
+### Private Maven Archiva Repository
+
+TODO ... write something.
+
 
 ## Resources
 
 [Gradle Plugin Development Plugin (Gradle Userguide)](https://docs.gradle.org/current/userguide/java_gradle_plugin.html)
+
+TODO fix the link
 
 [Developing Custom Gradle Plugins (Gradle Userguide)](https://docs.gradle.org/current/userguide/java_gradle_plugin.html)

@@ -11,7 +11,7 @@
 plugins {
   id 'java-gradle-plugin'
   id 'maven-publish'
-  // id 'com.rivancic.greeting-plugin' version '0.1.0' // Can be applied after its published to local or private/remote plugin repository
+  //id 'com.rivancic.greeting-plugin' version '0.1.0' // Can be applied after its published to local or private/remote plugin repository
 }
 
 group 'com.rivancic'
@@ -28,6 +28,26 @@ gradlePlugin {
     create("greetingPlugin") {
       id = "com.rivancic.greeting-plugin"
       implementationClass = "com.rivancic.gradle.plugin.greeting.GreetingPlugin"
+    }
+  }
+}
+
+/**
+ * In publishing block we can define specific package repositories where the artifacts will be published.
+ * As in our case we have Maven Archiva running locally we specify local URL,
+ * name of the repository so that we can find publishing task easily and credentials as Archiva requires
+ * them by default.
+ */
+publishing {
+  repositories {
+    maven {
+      url = "http://localhost:8080/repository/internal"
+      name = "mavenArchivaPrivate"
+      allowInsecureProtocol = true
+      credentials {
+        username = "$privateArchivaUser"
+        password = "$privateArchivaPassword"
+      }
     }
   }
 }
