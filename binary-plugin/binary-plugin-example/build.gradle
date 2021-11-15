@@ -5,7 +5,7 @@
  * maven-publish - Core Gradle Plugin, <a href="https://docs.gradle.org/current/userguide/publishing_maven.html">Java Gradle Plugin</a>Maven Publish</a>
  * plugin will make it possible to publish artifacts to Maven repositories.
  *
- * com.rivancic.greeting-plugin - if uncommented will apply itself to the Gradle build. It's meant to test the
+ * com.rivancic.greeting-plugin - if uncommented it will apply itself to the Gradle build. It's meant to test the
  * functionality of the plugin in project itself.
  */
 plugins {
