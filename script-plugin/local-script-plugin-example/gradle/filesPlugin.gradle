@@ -6,6 +6,10 @@ import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
+logger.quiet("=============================================================================================")
+logger.quiet("                               Files Plugin                                                  ")
+logger.quiet("=============================================================================================")
+
 /**
  * This build script contains two tasks. Main functionality is sorting files by their creation date or extension.
  *

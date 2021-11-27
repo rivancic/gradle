@@ -9,9 +9,8 @@ proper plugin you can extract build logic to local Gradle script files to separa
 
 This example builds on top of previous project that was used for creating [Gradle tasks](../../task/file-tasks-assignment-done).
 
-Compared to the task assignment all the logic was extracted to [taskPlugin.gradle](taskPlugin.gradle) file.
-Only thing being done in the main [build.gradle](build.gradle) script file is to apply local script plugin taskPlugin.
-
+Compared to the task assignment all the logic is extracted to [gradle/filesPlugin.gradle](gradle/filesPlugin.gradle) file.
+Only thing being done in the main [build.gradle](build.gradle) script file is to apply local script plugin filesPlugin.
 
 ![Local Script Plugin](readme-content/local-script-plugin.png)
 
@@ -19,9 +18,7 @@ Only thing being done in the main [build.gradle](build.gradle) script file is to
 
 ### Default
 
-By default, always **build.gradle** in the root of the project will be processed by Gradle. 
-
-
+By default, always **build.gradle** in the root of the project will be processed by Gradle.
 
 ### Specify build file in settings.gradle
 
@@ -29,7 +26,7 @@ You can define [project build filename](https://docs.gradle.org/current/javadoc/
 
 **settings.gradle**
 ```
-rootProject.buildFileName = 'taskPlugin.gradle'
+rootProject.buildFileName = 'gradle/filesPlugin.gradle'
 ```
 
 ### Specify build file over an CLI option (Deprecated)
@@ -37,9 +34,8 @@ rootProject.buildFileName = 'taskPlugin.gradle'
 To execute taskPlugin script file directly use following command (Will be deprecated in 8.0)
 
 ```
-./gradlew sF -b taskPlugin.gradle
+./gradlew sF -b gradle/filesPlugin.gradle
 ```
-
 
 ## Resources
 

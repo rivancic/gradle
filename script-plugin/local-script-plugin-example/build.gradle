@@ -4,8 +4,8 @@
  *
  * From the applied taskPlugin this Gradle project will have registered 'sortFiles' and 'clean' task.
  */
-apply from: 'taskPlugin.gradle'
+apply from: "gradle/filesPlugin.gradle"
 
 logger.quiet("=============================================================================================")
-logger.quiet("During the configuration time this line is printed if Gradle build is using build.gradle file")
+logger.quiet("                               Main Build Script                                             ")
 logger.quiet("=============================================================================================")
