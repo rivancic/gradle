@@ -1,0 +1,13 @@
+/**
+ * Name of the precompiled script plugin for which the source code resides in the <b>buildSrc</b> is defined by the
+ * file name of the script itself. In case that the filename is <b>com.rivancic.files-plugin.gradle</b> Then the
+ * plugin id will be filename without the extension (.gradle).
+ *
+ * <ul>
+ *   <li>Filename: com.rivancic.files-plugin.gradle</li>
+ *   <li>Plugin id: com.rivancic.files-plugin</li>
+ *   </ul>
+ */
+plugins {
+  id 'com.rivancic.files-plugin'
+}
