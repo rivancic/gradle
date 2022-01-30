@@ -14,9 +14,6 @@
       <module name="precompiled-plugin.buildSrc" target="1.8" />
       <module name="precompiled-plugin.buildSrc.main" target="1.8" />
       <module name="precompiled-plugin.buildSrc.test" target="1.8" />
-      <module name="precompiled-script-plugin-assignment-done.buildSrc" target="1.8" />
-      <module name="precompiled-script-plugin-assignment-done.buildSrc.main" target="1.8" />
-      <module name="precompiled-script-plugin-assignment-done.buildSrc.test" target="1.8" />
       <module name="precompiled-script-plugin.buildSrc" target="1.8" />
       <module name="precompiled-script-plugin.buildSrc.main" target="1.8" />
       <module name="precompiled-script-plugin.buildSrc.test" target="1.8" />
