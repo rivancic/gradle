@@ -1,0 +1,6 @@
+plugins {
+  id "com.rivancic.files-plugin" version "${filesPluginVersion}"
+}
+
+group 'com.rivancic'
+version '0.1.0'
