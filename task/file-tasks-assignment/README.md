@@ -91,7 +91,7 @@ source code of Gradle API and debug build.grade script.
 
 **Managing Files**
 
-- Method [Project#file()](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:file(java.lang.Object)) gets you relative path to the file from project location !!! TODO link to project section !!!
+- Method [Project#file()](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:file(java.lang.Object)) gets you relative path to the file from project location.
 - Method [Project#mkdir()](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:mkdir(java.lang.Object)) can create new directory [Gradle Creating directories](https://docs.gradle.org/current/userguide/working_with_files.html#sec:creating_directories_example)
 - [java.nio.Files.copy()](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/nio/file/Files.html#copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)) can copy file from source to target directory
 - You can use all other helper classes from Java [java.io](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/io/package-summary.html) and [java.nio.file](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/nio/file/package-summary.html) packages to manage files and folders.
