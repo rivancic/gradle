@@ -22,7 +22,7 @@ public class FileDirectoryMapperFactory {
       } else if (sortType.equals("alphabet")) {
         return new FileDirectoryAlphabetMapper();
       } else {
-        throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date']");
+        throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date','alphabet']");
       }
     } else {
       project.getLogger().quiet("Property [tasks.files.sortType] isn't set, default sorting will be done by creation date");
