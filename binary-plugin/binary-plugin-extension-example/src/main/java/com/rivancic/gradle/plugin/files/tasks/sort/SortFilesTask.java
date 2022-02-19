@@ -3,6 +3,8 @@ package com.rivancic.gradle.plugin.files.tasks.sort;
 import com.rivancic.gradle.plugin.files.tasks.sort.mapper.FileDirectoryMapper;
 import com.rivancic.gradle.plugin.files.tasks.sort.mapper.FileDirectoryMapperFactory;
 import org.gradle.api.DefaultTask;
+import org.gradle.api.provider.Property;
+import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
 
 import java.io.IOException;
@@ -31,7 +33,13 @@ import java.util.Arrays;
  * Based on sorting type new subdirectory is created in build target and file is copied to matching subdirectory.
  * Name of the subdirectory is defined with FileDirectoryMapper.
  */
-public class SortFilesTask extends DefaultTask {
+public abstract class SortFilesTask extends DefaultTask {
+
+  @Input
+  public abstract Property<String> getSortType();
+
+  @Input
+  public abstract Property<String> getDirectoryLocation();
 
   public SortFilesTask() {
     setGroup("files");
@@ -44,9 +52,10 @@ public class SortFilesTask extends DefaultTask {
 
     getProject().getLogger().quiet("==== Sorting Files ====");
 
-    FileDirectoryMapper fileMapper = FileDirectoryMapperFactory.getFileDirectoryMapper(getProject());
+    FileDirectoryMapper fileMapper = FileDirectoryMapperFactory.getFileDirectoryMapper(getProject().getLogger(), getSortType());
 
-    Arrays.stream(getProject().file(getProject().getExtensions().getExtraProperties().get("tasks.files.folder"))
+   // Arrays.stream(getProject().file(getProject().getExtensions().getExtraProperties().get("tasks.files.folder"))
+    Arrays.stream(getProject().file(getDirectoryLocation().get())
         .listFiles())
         .filter(file -> file.isFile() && !file.isHidden())
         .forEach(file -> {

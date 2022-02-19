@@ -2,6 +2,7 @@ package com.rivancic.gradle.plugin.files;
 
 import com.rivancic.gradle.plugin.files.tasks.clean.CleanTask;
 import com.rivancic.gradle.plugin.files.tasks.sort.SortFilesTask;
+import com.rivancic.gradle.plugin.files.tasks.sort.SortFilesTaskExtension;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
@@ -27,6 +28,8 @@ public class FilesPlugin implements Plugin<Project> {
     project.getLogger().info("=============================================================================================");
     project.getLogger().info("                            Binary Files Plugin                                              ");
     project.getLogger().info("=============================================================================================");
+
+    project.getExtensions().create("sortFilesExtension", SortFilesTaskExtension.class);
 
     // Check if clean task is already registered. Then don't add it. As it can conflict with java clean task if java plugin is applied to the same project.
     if (project.getTasks().findByName(CLEAN_TASK_NAME) == null) {
