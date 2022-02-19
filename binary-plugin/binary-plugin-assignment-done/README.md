@@ -13,7 +13,7 @@ Plugin logic is broken down in two tasks:
 
 While sorting algorithm is extracted further into [FileDirectoryMapper](src/main/java/com/rivancic/gradle/plugin/files/tasks/sort/mapper/FileDirectoryMapper.java) implementation classes.
 
-In [build.gradle](build.gradle) plugin ID: `com.rivancic.files-plugin` is defined withing the `gradlePlugin{}` block with the help of `java-gradle-plugin`.
+In [build.gradle](build.gradle) plugin ID: `com.rivancic.files-plugin` is defined within the `gradlePlugin{}` block with the help of `java-gradle-plugin`.
 implementationClass property points to `com.rivancic.gradle.plugin.files.FilesPlugin`.
 
 ## Testing
