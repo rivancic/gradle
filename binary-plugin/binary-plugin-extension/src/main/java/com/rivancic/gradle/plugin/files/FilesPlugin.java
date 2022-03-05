@@ -36,6 +36,10 @@ public class FilesPlugin implements Plugin<Project> {
       project.getTasks().register(CLEAN_TASK_NAME, CleanTask.class);
     }
 
+    // TODO investigate how to pass parameters to the task.
+    // Should I pass in extension directly or validate extension parameters before I do that, and pass in just
+    // task specific parameters? Have to check how this is being done in one gradle native plugin.
+
     project.getTasks()
         .register(SORT_FILES_TASK_NAME, SortFilesTask.class)
         .configure(action -> action.dependsOn(project.getTasks().getByName(CLEAN_TASK_NAME)));

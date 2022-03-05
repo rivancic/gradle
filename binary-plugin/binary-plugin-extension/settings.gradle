@@ -25,5 +25,5 @@ pluginManagement {
     }
   }
 }
-rootProject.name = 'binary-plugin-extension-example'
+rootProject.name = 'binary-plugin-extension'
 
