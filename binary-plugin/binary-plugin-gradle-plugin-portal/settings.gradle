@@ -1,0 +1,18 @@
+/**
+ * By default only Gradle Plugin Portal is defined as a repository that provides Gradle plugins that can be applied
+ * within <pre>plugins{}<pre> block.
+ *
+ * If you want to specify any additional repository you have to define them in pluginManagement block within
+ * setting.gradle file. Remember pluginManagement has to be the first statement inside settings.gradle file.
+ *
+ * In definition below 3 repositories will be taken ito account when Gradle will search for defined plugin by its ID and version:
+ * - Gradle Plugin Portal,
+ * - Maven Local repository will be taken into account when Gradle
+ */
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    mavenLocal()
+  }
+}
+rootProject.name = 'binary-plugin-gradle-plugin-portal'
