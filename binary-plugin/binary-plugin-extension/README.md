@@ -14,6 +14,8 @@ TODO Explain how plugin with extension can be tested on binary-plugin-extension-
 
 ## Resources
 
-[Gradle Plugin Development Plugin (Gradle Userguide)](https://docs.gradle.org/current/userguide/java_gradle_plugin.html)
+// TODO add some resources that explain usage of extensions
 
-[Developing Custom Gradle Plugins (Gradle Userguide)](https://docs.gradle.org/current/userguide/custom_plugins.html)
+### Examples
+
+// TODO add some github examples of real life projects that are defining extensions and the projects that are then actually using those.

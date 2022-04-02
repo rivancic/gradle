@@ -1,8 +1,7 @@
+/*
 plugins {
   id "com.rivancic.files-plugin" version "${filesPluginVersion}"
 }
-
-
 
 def smthing = getProject().getExtensions().getExtraProperties().get('tasks.files.folder')
 def loc = getProject().getExtensions().getExtraProperties().get('tasks.files.sortType')
@@ -13,4 +12,4 @@ sortFilesExtension {
 }
 
 group 'com.rivancic'
-version '0.1.0'
+version '0.1.0'*/
