@@ -15,14 +15,15 @@ public class FileDirectoryMapperFactory {
     String sortType;
     if (project.hasProperty("tasks.files.sortType")) {
       sortType = project.getExtensions().getExtraProperties().get("tasks.files.sortType").toString();
-      if (sortType.equals("extension")) {
-        return new FileDirectoryExtensionMapper();
-      } else if (sortType.equals("date")) {
-        return new FileDirectoryDateMapper();
-      } else if (sortType.equals("alphabet")) {
-        return new FileDirectoryAlphabetMapper();
-      } else {
-        throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date','alphabet']");
+      switch (sortType) {
+        case "extension":
+          return new FileDirectoryExtensionMapper();
+        case "date":
+          return new FileDirectoryDateMapper();
+        case "alphabet":
+          return new FileDirectoryAlphabetMapper();
+        default:
+          throw new InvalidUserDataException("Invalid property tasks.files.sortType value provided [" + sortType + "]. Valid values are ['extension','date','alphabet']");
       }
     } else {
       project.getLogger().quiet("Property [tasks.files.sortType] isn't set, default sorting will be done by creation date");
