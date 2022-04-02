@@ -1,17 +1,20 @@
 # Binary Plugin Gradle Plugin Portal
 
-Publishing binary Gradle plugin to Gradle Plugin Portal.
+Project with the configuration that can publish binary Gradle plugin to Gradle Plugin Portal.
 
-[Gradle Plugin Portal](https://plugins.gradle.org/), a centralized, searchable repository dedicated to Gradle plugins.
+[Gradle Plugin Portal](https://plugins.gradle.org/), is a centralized, searchable repository dedicated to Gradle plugins.
 
 In order to prepare the project for publishing it to Gradle Plugin Portal you have to make sure you add following configuration:
-1) Save Gradle Plugin Portal credentials to ~/.gradle/gradle.properties
+
+1) Make sure you have a Gradle Plugin Portal account, which can be set up at a [login/registration page](https://plugins.gradle.org/user/login), and create key and its secret for the API access.
+
+2) Save Gradle Plugin Portal key and secret to `~/.gradle/gradle.properties`:
    
 ```properties
 gradle.publish.key=...
 gradle.publish.secret=...
 ```
-2) In project apply **com.gradle.plugin-publish** plugin (TODO add link here).
+3) In project apply **com.gradle.plugin-publish** plugin.
    
 ```groovy
 plugins {
@@ -20,7 +23,8 @@ plugins {
   id 'com.gradle.plugin-publish' version '0.20.0'
 }
 ```
-3) Verify that you have `description` set in `gradlePlugin{}` (TODO link here) extension block.
+4) Verify that you have `description` set in specific `plugins{}` extension block that is of type [PluginDeclaration](https://docs.gradle.org/current/javadoc/org/gradle/plugin/devel/PluginDeclaration.html).
+The group part in ID will have to match with your email or user name.
    
 ```groovy
 gradlePlugin {
@@ -34,7 +38,7 @@ gradlePlugin {
   }
 }
 ```
-4) In `pluginBundle{}` (TODO link here) extension you have to add required metadata `website`, `vcsUrl` and `tags` properties for the plugin.
+5) In `pluginBundle{}` extension you have to add required metadata `website`, `vcsUrl` and `tags` properties for the plugin.
 
 ```groovy
 pluginBundle {
@@ -47,10 +51,17 @@ pluginBundle {
 With `publishPlugins` task you can publish your plugin to Gradle Plugin Portal. As describe in the tutorial for publishing 
 for the first time you might wait a day or two that the plugin will be approved.
 
-TODO Add here code parts and explain how to add credentials to ~/.gradle directory
-
 ## Resources
 
 [Publishing Plugins to the Gradle Plugin Portal (Gradle Userguide)](https://docs.gradle.org/current/userguide/publishing_gradle_plugins.html)
 
 [How do I publish my plugin to the Plugin Portal? (Gradle Plugin Portal)](https://plugins.gradle.org/docs/publish-plugin)
+
+<!--
+
+### Examples
+
+// TODO add some examples of real projects that are published to Gradle Plugin Portal. 
+For example SpringBoot / Dependency management plugins. Add also the links to those plugins.
+
+-->
