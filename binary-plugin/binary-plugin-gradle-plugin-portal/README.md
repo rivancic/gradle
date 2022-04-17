@@ -7,6 +7,7 @@ Project with the configuration that can publish binary Gradle plugin to Gradle P
 In order to prepare the project for publishing it to Gradle Plugin Portal you have to make sure you add following configuration:
 
 1) Make sure you have a Gradle Plugin Portal account, which can be set up at a [login/registration page](https://plugins.gradle.org/user/login), and create key and its secret for the API access.
+   Alternatively to creation of API keys manually you can later use gradle   login task that will guide you through the process of setting up keys.
 
 2) Save Gradle Plugin Portal key and secret to `~/.gradle/gradle.properties`:
    
@@ -43,13 +44,18 @@ gradlePlugin {
 ```groovy
 pluginBundle {
   website = 'https://github.com/rivancic/gradle'
-  vcsUrl = 'https://github.com/rivancic/gradle/tree/master/binary-plugin'
+  vcsUrl = 'https://github.com/rivancic/gradle' // has to point to the root of the repository
   tags = ['files', 'sorting']
 }
 ```
 
 With `publishPlugins` task you can publish your plugin to Gradle Plugin Portal. As describe in the tutorial for publishing 
-for the first time you might wait a day or two that the plugin will be approved.
+for the first time you might wait a day or two that the plugin will be approved. In case your submission is not complete you 
+will receive an email with detailed explanation of what additional steps are necessary.
+
+## Published Version
+
+Plugin is being published on Gradle Plugin Portal as [com.rivancic.files-plugin](https://plugins.gradle.org/plugin/com.rivancic.files-plugin)
 
 ## Resources
 
