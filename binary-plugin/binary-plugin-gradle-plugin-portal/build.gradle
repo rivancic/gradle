@@ -38,7 +38,7 @@ gradlePlugin {
  */
 pluginBundle {
   website = 'https://github.com/rivancic/gradle'
-  vcsUrl = 'https://github.com/rivancic/gradle/tree/master/binary-plugin'
+  vcsUrl = 'https://github.com/rivancic/gradle'
   tags = ['files', 'sorting']
 }
 

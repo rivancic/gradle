@@ -2,9 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="binary-plugin-extension" target="1.8" />
       <module name="binary-plugin-extension-example" target="1.8" />
       <module name="binary-plugin-extension-example.main" target="1.8" />
       <module name="binary-plugin-extension-example.test" target="1.8" />
+      <module name="binary-plugin-extension.main" target="1.8" />
+      <module name="binary-plugin-extension.test" target="1.8" />
       <module name="precompiled-binary-plugin-dependency" target="1.8" />
       <module name="precompiled-binary-plugin-dependency.buildSrc" target="1.8" />
       <module name="precompiled-binary-plugin-dependency.buildSrc.main" target="1.8" />

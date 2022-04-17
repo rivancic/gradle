@@ -12,16 +12,46 @@
  */
 pluginManagement {
   repositories {
-    gradlePluginPortal()
-    mavenLocal()
-    maven {
-      url = "http://localhost:8080/repository/internal"
-      name = "mavenArchivaPrivate"
-      allowInsecureProtocol = true
-      credentials {
-        username = "$privateArchivaUser"
-        password = "$privateArchivaPassword"
+    logger.info("---- settings.gradle Plugin Repositories ------------------------------------------------------------")
+    def gradlePluginPortalFlag = false
+    try {
+      gradlePluginPortalFlag = "${useGradlePluginPortal}"
+    } catch(Exception e) {
+      logger.info("\"useGradlePluginPortal\" variable isn't set in gradle.properties")
+    }
+    if(gradlePluginPortalFlag == "true") {
+      gradlePluginPortal()
+      logger.info("Using Gradle Plugin Portal")
+    }
+
+    def useMavenLocalFlag = false
+    try {
+      useMavenLocalFlag = "${useMavenLocalCache}"
+    } catch(Exception e) {
+      logger.info("\"useMavenLocalCache\" variable isn't set in gradle.properties")
+    }
+    if(useMavenLocalFlag == "true") {
+      mavenLocal()
+      logger.info("Using Maven Local Cache")
+    }
+
+    def useMavenPrivateFlag = false
+    try {
+      useMavenPrivateFlag = "${useMavenPrivateRepo}"
+    } catch(Exception e) {
+      logger.info("\"useMavenPrivateRepo\" variable isn't set in gradle.properties")
+    }
+    if(useMavenPrivateFlag == "true") {
+      maven {
+        url = "http://localhost:8080/repository/internal"
+        name = "mavenArchivaPrivate"
+        allowInsecureProtocol = true
+        credentials {
+          username = "$privateArchivaUser"
+          password = "$privateArchivaPassword"
+        }
       }
+      logger.info("Using Maven Private Repository at http://localhost:8080/repository/internal")
     }
   }
 }
