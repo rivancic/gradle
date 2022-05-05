@@ -1,16 +1,9 @@
 /**
- * java-gradle-plugin - Core Gradle Plugin, <a href="https://docs.gradle.org/current/userguide/java_gradle_plugin.html">Java Gradle Plugin</a>.
- * It simplifies compilation and publishing of Gradle binary plugins.
- *
- * maven-publish - Core Gradle Plugin, <a href="https://docs.gradle.org/current/userguide/publishing_maven.html">Java Gradle Plugin</a>Maven Publish</a>
- * plugin will make it possible to publish artifacts to Maven repositories.
- *
- * com.gradle.plugin-publish is a plugin that contains functionality for publishing Gradle plugins to Gradle Plugin Portal.
+ * <a href="https://plugins.gradle.org/plugin/com.gradle.plugin-publish">com.gradle.plugin-publish</a> is a plugin that contains functionality for publishing Gradle plugins to Gradle Plugin Portal.
+ * Since version 1.0.0-rc-1, it automatically includes java-gradle-plugin and maven-publish plugin
  */
 plugins {
-  id "java-gradle-plugin"
-  id "maven-publish"
-  id 'com.gradle.plugin-publish' version '0.20.0'
+  id "com.gradle.plugin-publish" version "1.0.0-rc-1"
 }
 
 /**
@@ -38,7 +31,7 @@ gradlePlugin {
  */
 pluginBundle {
   website = 'https://github.com/rivancic/gradle'
-  vcsUrl = 'https://github.com/rivancic/gradle/tree/master/binary-plugin'
+  vcsUrl = 'https://github.com/rivancic/gradle'
   tags = ['files', 'sorting']
 }
 

@@ -13,10 +13,11 @@ import java.time.format.DateTimeFormatter;
  * Maps file creation date to directory name.
  */
 public class FileDirectoryDateMapper implements FileDirectoryMapper {
+
   @Override
   public String getDirectory(File file) throws IOException {
     FileTime creationTime = (FileTime) Files.getAttribute(Paths.get(file.getPath()), "creationTime");
-    DateTimeFormatter fileCreationDateFormat = DateTimeFormatter.ofPattern("MM-YYYY");
+    DateTimeFormatter fileCreationDateFormat = DateTimeFormatter.ofPattern("MM-yyyy");
     return fileCreationDateFormat.format(Instant.ofEpochMilli(creationTime.toMillis()).atZone(ZoneOffset.UTC).toLocalDate());
   }
 }
