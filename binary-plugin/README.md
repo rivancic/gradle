@@ -8,6 +8,8 @@ This directory contains assignments and examples with the focus on standalone Gr
 | **[binary-plugin-assignment-done](binary-plugin-assignment-done)** | Solved assignment for the binary plugin lecture. It shows how can script plugin from the previous lectures for sorting files be overwritten into binary plugin.| [Binary Plugin Assignment](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
 | **[binary-plugin-assignment-test-project](binary-plugin-assignment-test-project)** | Simple project that demonstrates application of the binary plugin created in binary-plugin-assignment-done. | [Binary Plugin Assignment](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
 | **[binary-plugin-gradle-plugin-portal](binary-plugin-gradle-plugin-portal)** | Extended binary plugin from the assignment with the option to upload the plugin to official Gradle Plugin Portal. | [Publishing - Gradle Plugin Portal](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
+| **[binary-plugin-extension](binary-plugin-extension)** | Binary plugin that uses its own extension for the configuration of plugin logic. | [Binary Plugin - Extension](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
+| **[binary-plugin-extension-test-project](binary-plugin-extension-test-project)** | Example project where plugin is applies and configured wiht the help of `sortFiles` extension. | [Binary Plugin - Extension](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
 
 # Resources
 

@@ -10,6 +10,6 @@ plugins {
 }
 ```
 
-`filesPluginVersion` is secified in [gradle.properties](gradle.properties) file.
+`filesPluginVersion` is specified in [gradle.properties](gradle.properties) file.
 
-Files form `files` directory are sorted into [build/files](build/files) directory.
+Files from `files` directory are sorted into [build/files](build/files) directory.
