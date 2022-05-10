@@ -18,7 +18,14 @@ sortFiles {
 ```
 
 You are still able to read properties in build.gradle file and pass them through the `sortFiles` extension while the
-plugin won't read those any properties directly.
+plugin won't read those any properties directly:
+
+```groovy
+sortFiles {
+  sortType = getProject().getExtensions().getExtraProperties().get('tasks.files.sortType')
+  directoryLocation = getProject().getExtensions().getExtraProperties().get('tasks.files.folder')
+}
+```
 
 ## Testing
 
