@@ -9,8 +9,13 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-
-public class FileDirectoryAlphabetMapperTest {
+/**
+ * Tests {@link FileDirectoryAlphabetMapper}. {@link FileDirectoryAlphabetMapper#getDirectory(File)} method has to
+ * return back the name of the directory based on the first letter in the directory name.
+ *
+ * For example business.jpg -> b.
+ */
+class FileDirectoryAlphabetMapperTest {
 
   @ParameterizedTest
   @MethodSource("provideTestFiles")

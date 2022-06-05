@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class FileDirectoryMapperFactoryTest {
+class FileDirectoryMapperFactoryTest {
 
   @Test
   void whenNoSortType_thenReturnDefaultFileDirectoryMapper() {
@@ -58,7 +58,6 @@ public class FileDirectoryMapperFactoryTest {
     // Then
     Assertions.assertEquals("Invalid property sortType value provided [wrong_sort_type]. Valid values are ['extension','date','alphabet']",exception.getMessage());
   }
-
 
   private static Stream<Arguments> provideSortTypeWithExpectedFileMapper() {
     return Stream.of(

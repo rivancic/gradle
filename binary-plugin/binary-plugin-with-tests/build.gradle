@@ -1,38 +1,35 @@
 /**
  * <a href="https://plugins.gradle.org/plugin/com.gradle.plugin-publish">com.gradle.plugin-publish</a> is a plugin that contains functionality for publishing Gradle plugins to Gradle Plugin Portal.
- * Since version 1.0.0-rc-1, it automatically includes java-gradle-plugin and maven-publish plugin
+ * Since version 1.0.0-rc-1, it automatically includes java-gradle-plugin and maven-publish plugin.
+ *
+ * jvm-test-suite plugin helps to structure different kinds of tests in a separated source directories.
+ * It is applied automatically with the java plugin.
  */
 plugins {
   id "com.gradle.plugin-publish" version "1.0.0-rc-1"
-  id 'jvm-test-suite'
 }
 
 repositories {
   mavenCentral()
 }
 
-/*dependencies {
-  testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
-}*/
-
 compileJava {
   sourceCompatibility = '15'
   targetCompatibility = '15'
 }
 
-/*
-test {
-  useJUnitPlatform()
-}
-*/
-
+/**
+ * This project will have 2 test suites.
+ *   test - default one which will use JUnit5 and
+ *   integrationTest suite for functional testing of Gradle plugin.
+ */
 testing {
   suites {
     test {
       useJUnitJupiter()
     }
 
-    integrationTest(JvmTestSuite) {
+    functionalTest(JvmTestSuite) {
       dependencies {
         implementation project
       }
@@ -49,10 +46,8 @@ testing {
 }
 
 dependencies {
-  integrationTestImplementation gradleTestKit()
+  functionalTestImplementation gradleTestKit()
 }
-
-
 
 /**
  * An extension for java-gradle-plugin in which we define all the plugins that this project will create.
@@ -64,8 +59,7 @@ dependencies {
  * This information will be shown on the plugin detail page, and will help users to understand which functionality your plugin supports.
  */
 gradlePlugin {
-  testSourceSets project.sourceSets.integrationTest
-  pluginSourceSet project.sourceSets.main
+  testSourceSets sourceSets.functionalTest // Returns the source sets executing the functional tests with TestKit. Defaults to project.sourceSets.test.
   plugins {
     create("filesPlugin") {
       id = "com.rivancic.files-plugin"
