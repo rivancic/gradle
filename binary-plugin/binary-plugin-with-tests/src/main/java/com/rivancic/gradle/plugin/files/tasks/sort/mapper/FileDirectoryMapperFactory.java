@@ -4,6 +4,9 @@ import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.provider.Provider;
 
+/**
+ * Factory class that based on provided sorting type parameter returns concrete {@link FileDirectoryMapper}.
+ */
 public class FileDirectoryMapperFactory {
 
   private FileDirectoryMapperFactory(){}
