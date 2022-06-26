@@ -1,16 +1,16 @@
 # Binary Plugin - Tests
 
 In this project I will show you how you can test every aspect of your binary plugin. In order that we can focus on 
-different abstraction of the code we are testing we can rely on following tests:
+different abstraction of the code we are testing, we can rely on following tests:
 - Unit
 - Integration
 - Functional
 
-Project is using separated **unit** and **functional** tests that is supported by `jvm-test-suite`.
+Project is using separated **unit** and **functional** tests that is supported by [`jvm-test-suite` plugin](https://docs.gradle.org/current/userguide/jvm_test_suite_plugin.html).
 
 ## Unit Tests
 
-In this step you are testing smallest unit in your plugin. In our case this isolated class or even a single method of the class.
+In this step you are testing the smallest unit in your plugin. In our case this is an isolated class or even a single method of the class.
 There is no dependency on any external components. In Java world JUnit5 Framework is quite popular, and I will use it for 
 demonstration.
 

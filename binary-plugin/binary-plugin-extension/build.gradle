@@ -35,7 +35,6 @@ pluginBundle {
   tags = ['files', 'sorting']
 }
 
-
 /**
  * In publishing block we can define specific package repositories where the artifacts will be published.
  * As in our case we have Maven Archiva running locally we specify local URL,
