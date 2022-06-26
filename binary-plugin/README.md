@@ -10,6 +10,7 @@ This directory contains assignments and examples with the focus on standalone Gr
 | **[binary-plugin-gradle-plugin-portal](binary-plugin-gradle-plugin-portal)** | Extended binary plugin from the assignment with the option to upload the plugin to official Gradle Plugin Portal. | [Publishing - Gradle Plugin Portal](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
 | **[binary-plugin-extension](binary-plugin-extension)** | Binary plugin that uses its own extension for the configuration of plugin logic. | [Binary Plugin - Extension](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
 | **[binary-plugin-extension-test-project](binary-plugin-extension-test-project)** | Example project where plugin is applies and configured wiht the help of `sortFiles` extension. | [Binary Plugin - Extension](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
+| **[binary-plugin-with-tests](binary-plugin-with-tests)** | Project containing plugin tests. There are simple `JUnit` and functional tests that require to run Gradle project with plugin applied. Functional tests are executed with the help of Gradle `TestKit` library. | [Binary Plugin - Tests](https://www.udemy.com/course/gradle-development/learn/practice/1361294) |
 
 # Resources
 

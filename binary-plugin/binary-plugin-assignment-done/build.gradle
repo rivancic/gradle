@@ -10,8 +10,6 @@ plugins {
   id "maven-publish"
 }
 
-
-
 /**
  * An extension for java-gradle-plugin in which we define all the plugins that this project will create.
  * Each plugin should have name, id and an implementationClass defined.

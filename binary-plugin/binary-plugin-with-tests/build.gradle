@@ -1,9 +1,52 @@
 /**
  * <a href="https://plugins.gradle.org/plugin/com.gradle.plugin-publish">com.gradle.plugin-publish</a> is a plugin that contains functionality for publishing Gradle plugins to Gradle Plugin Portal.
- * Since version 1.0.0-rc-1, it automatically includes java-gradle-plugin and maven-publish plugin
+ * Since version 1.0.0-rc-1, it automatically includes java-gradle-plugin and maven-publish plugin.
+ *
+ * jvm-test-suite plugin helps to structure different kinds of tests in a separated source directories.
+ * It is applied automatically with the java plugin.
  */
 plugins {
-  id "com.gradle.plugin-publish" version "1.0.0-rc-1"
+  id "com.gradle.plugin-publish" version "1.0.0-rc-3"
+}
+
+repositories {
+  mavenCentral()
+}
+
+compileJava {
+  sourceCompatibility = '15'
+  targetCompatibility = '15'
+}
+
+/**
+ * This project will have 2 test suites.
+ *   test - default one which will use JUnit5 and
+ *   integrationTest suite for functional testing of Gradle plugin.
+ */
+testing {
+  suites {
+    test {
+      useJUnitJupiter()
+    }
+
+    functionalTest(JvmTestSuite) {
+      dependencies {
+        implementation project
+      }
+
+      targets {
+        all {
+          testTask.configure {
+            shouldRunAfter(test)
+          }
+        }
+      }
+    }
+  }
+}
+
+dependencies {
+  functionalTestImplementation gradleTestKit()
 }
 
 /**
@@ -16,6 +59,7 @@ plugins {
  * This information will be shown on the plugin detail page, and will help users to understand which functionality your plugin supports.
  */
 gradlePlugin {
+  testSourceSets sourceSets.functionalTest // Returns the source sets executing the functional tests with TestKit. Defaults to project.sourceSets.test.
   plugins {
     create("filesPlugin") {
       id = "com.rivancic.files-plugin"
@@ -34,6 +78,7 @@ pluginBundle {
   vcsUrl = 'https://github.com/rivancic/gradle'
   tags = ['files', 'sorting']
 }
+
 
 /**
  * In publishing block we can define specific package repositories where the artifacts will be published.
