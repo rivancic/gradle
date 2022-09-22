@@ -17,8 +17,8 @@ sortFiles {
 }
 ```
 
-You are still able to read properties in build.gradle file and pass them through the `sortFiles` extension while the
-plugin won't read those any properties directly:
+You are still able to read properties in build.gradle script and pass them through the `sortFiles` extension, while the
+plugin won't read any properties directly:
 
 ```groovy
 sortFiles {
@@ -29,8 +29,7 @@ sortFiles {
 
 ## Testing
 
-I have added [binary-plugin-extension-test-project](../binary-plugin-extension-test-project) project where this binary plugin with extension definition is being 
-applied and parameters configured through the extension.
+I have added [binary-plugin-extension-test-project](../binary-plugin-extension-test-project) project where this binary plugin with extension definition is being applied and parameters configured through the extension.
 
 ## Resources
 
