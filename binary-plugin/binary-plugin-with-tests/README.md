@@ -35,6 +35,24 @@ to add `gradleTestKit()` to your plugin test dependencies. When the build execut
 
 Logs of the build can be gathered through the `BuildResult.getOutput()` method.
 
+GradleRunner snippets:
+
+```java
+@TempDir
+File testProjectDir;
+
+// Build GradleRunner
+BuildResult result = GradleRunner.create()
+  .withProjectDir(testProjectDir)
+  .withArguments("taskName")
+  .withPluginClasspath()
+  .build();
+
+// Assertions
+Assertions.assertEquals(SUCCESS, result.task(":taskName").getOutcome());
+Assertions.assertTrue(result.getOutput().contains("Text in Gradle logs"));
+```
+
 ### Description of tests:
 
 |    Module     |  Description  |
