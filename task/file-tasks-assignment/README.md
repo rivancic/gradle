@@ -33,7 +33,7 @@ Example of provided unsorted files
 
 ![Unsorted files](readme-content/task-assignment-files-unsorted.png)
 
-After one executes `graldew sortedFiles` command, every file from the root of provided directory has to be stored in a build/files subfolder by default based on the creation date as in the example below:
+After one executes `gradlew sortedFiles` command, every file from the root of provided directory has to be stored in a build/files subfolder by default based on the creation date as in the example below:
 
 ![Unsorted files](readme-content/task-assignment-files-sorted-under-build.png)
 
@@ -82,7 +82,7 @@ dependencyInsight - Displays the insight into a specific dependency in root proj
 
 - You can use logger instance to print messages that will help you debug script logic.
 - Make sure you have IDE properly set up, so you will have autocompletion available, you'll be able to investigate 
-source code of Gradle API and debug build.grade script.
+source code of Gradle API and debug build.gradle script.
 - You can read gradle extra properties from project.ext
 
 **Tasks**
