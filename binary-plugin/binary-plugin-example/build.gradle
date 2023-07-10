@@ -9,13 +9,13 @@
  * functionality of the plugin in project itself.
  */
 plugins {
-  id 'java-gradle-plugin'
-  id 'maven-publish'
-  //id 'com.rivancic.greeting-plugin' version '0.1.0' // Can be applied after its published to local or private/remote plugin repository
+  id "java-gradle-plugin"
+  id "maven-publish"
+  // id "com.rivancic.greeting-plugin" version "0.2.0" // Can be applied after its published to local or private/remote plugin repository
 }
 
-group 'com.rivancic'
-version '0.1.0'
+group "com.rivancic"
+version "0.2.0"
 
 /**
  * An extension for java-gradle-plugin in which we define all the plugins that this project will create.

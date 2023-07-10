@@ -36,25 +36,38 @@ import java.util.Arrays;
  */
 public abstract class SortFilesTask extends DefaultTask {
 
+  /**
+   * @return Property that represents file sorting type.
+   */
   @Input
   public abstract Property<String> getSortType();
 
   /**
    * With correctly defined task inputs and outputs task can be skipped during the execution.
-   * See https://docs.gradle.org/current/userguide/more_about_tasks.html#sec:up_to_date_checks
+   * See <a href="https://docs.gradle.org/current/userguide/more_about_tasks.html#sec:up_to_date_checks">Up-to-date Checks - Gradle User guide</a>
+   *
+   * @return DirectoryProperty pointing to directory containing files to be sorted.
    */
   @InputDirectory
   public abstract DirectoryProperty getDirectoryLocation();
 
+  /**
+   * @return DirectoryProperty specifying resulting directory where sorted files will be stored.
+   */
   @OutputDirectory
   public abstract DirectoryProperty getOutputDir();
 
+  /**
+   * Default configuration of SortFilesTask through the constructor.
+   */
   public SortFilesTask() {
     setGroup("files");
     setDescription("Sorts files in given directory into build/files subdirectories based on the sorting type [date, extension, alphabet]");
   }
 
-  // Action that will be executed
+  /**
+   * Main action of the task for sorting files that will be executed.
+   */
   @TaskAction
   public void apply() {
 

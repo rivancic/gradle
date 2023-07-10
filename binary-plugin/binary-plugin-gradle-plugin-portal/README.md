@@ -7,7 +7,7 @@ Project with the configuration that can publish binary Gradle plugin to Gradle P
 In order to prepare the project for publishing it to Gradle Plugin Portal you have to make sure you add following configuration:
 
 1) Make sure you have a Gradle Plugin Portal account, which can be set up at a [login/registration page](https://plugins.gradle.org/user/login), and create key and its secret for the API access.
-   Alternatively to creation of API keys manually you can later use gradle   login task that will guide you through the process of setting up keys.
+   Alternatively to creation of API keys manually you can later use gradle login task that will guide you through the process of setting up keys.
 
 2) Save Gradle Plugin Portal key and secret to `~/.gradle/gradle.properties`:
    
@@ -19,33 +19,27 @@ gradle.publish.secret=...
    
 ```groovy
 plugins {
-  id "java-gradle-plugin"
-  id "maven-publish"
-  id 'com.gradle.plugin-publish' version '0.20.0'
+  id "com.gradle.plugin-publish" version "1.2.0"
 }
 ```
 4) Verify that you have `description` set in specific `plugins{}` extension block that is of type [PluginDeclaration](https://docs.gradle.org/current/javadoc/org/gradle/plugin/devel/PluginDeclaration.html).
-The group part in ID will have to match with your email or user name.
-   
+The group part in ID will have to match with your email or user name. 
+In new version of Gradle and plugin-publish plugin also specify metadata inside of gradlePlugin block (no pluginBundle extension anymore).
+So be sure you apply `website`, `vcsUrl` and `tags` properties for the plugin.
+
 ```groovy
 gradlePlugin {
+  website = "https://github.com/rivancic/gradle"
+  vcsUrl = "https://github.com/rivancic/gradle" // has to point to the root of the repository
   plugins {
     create("filesPlugin") {
       id = "com.rivancic.files-plugin"
       displayName = "Files Sorting Plugin"
       description = "Plugin that can sort provided files based on a particular rule (alphabetically, creation date, extension)"
       implementationClass = "com.rivancic.gradle.plugin.files.FilesPlugin"
+      tags.set(["files", "sorting"])
     }
   }
-}
-```
-5) In `pluginBundle{}` extension you have to add required metadata `website`, `vcsUrl` and `tags` properties for the plugin.
-
-```groovy
-pluginBundle {
-  website = 'https://github.com/rivancic/gradle'
-  vcsUrl = 'https://github.com/rivancic/gradle' // has to point to the root of the repository
-  tags = ['files', 'sorting']
 }
 ```
 

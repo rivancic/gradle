@@ -8,9 +8,7 @@
  * com.gradle.plugin-publish is a plugin that contains functionality for publishing Gradle plugins to Gradle Plugin Portal.
  */
 plugins {
-  id "java-gradle-plugin"
-  id "maven-publish"
-  id 'com.gradle.plugin-publish' version '0.20.0'
+  id "com.gradle.plugin-publish" version "1.2.0" // automatically adds java-gradle-plugin and maven-publish
 }
 
 /**
@@ -23,25 +21,21 @@ plugins {
  * This information will be shown on the plugin detail page, and will help users to understand which functionality your plugin supports.
  */
 gradlePlugin {
+
+  // Metadata for publishing on the Gradle Plugin Portal. This <b>pluginBundle</b> extension is provided with the <b>com.gradle.plugin-publish</b> Gradle plugin.
+  website = "https://github.com/rivancic/gradle"
+  vcsUrl = "https://github.com/rivancic/gradle"
+
   plugins {
     create("filesPlugin") {
       id = "com.rivancic.files-plugin"
       displayName = "Files Sorting Plugin"
       description = "Plugin that can sort provided files based on a particular rule (alphabetically, creation date, extension)"
       implementationClass = "com.rivancic.gradle.plugin.files.FilesPlugin"
+      tags.set(["files", "sorting"])
     }
   }
 }
-
-/**
- * Metadata for publishing on the Gradle Plugin Portal. This <b>pluginBundle</b> extension is provided with the <b>com.gradle.plugin-publish</b> Gradle plugin.
- */
-pluginBundle {
-  website = 'https://github.com/rivancic/gradle'
-  vcsUrl = 'https://github.com/rivancic/gradle'
-  tags = ['files', 'sorting']
-}
-
 
 /**
  * In publishing block we can define specific package repositories where the artifacts will be published.
