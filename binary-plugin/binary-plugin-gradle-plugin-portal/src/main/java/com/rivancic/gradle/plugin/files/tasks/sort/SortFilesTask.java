@@ -12,10 +12,10 @@ import java.util.Arrays;
 
 /**
  * Task is grouped into "files" group.
- *
+ * <p>
  * Root folder containing files that have to be sorted is parametrized through Gradle properties with the key [tasks.files.folder].
  * Property has to be accessed through the project.ext map as direct reference doesn't work if property key is named with the dot notation.
- *
+ * <p>
  * This method sorts files from specific directory and copies them to build/files directory.
  * Files are being sorted based on their extension, creation date or initial character. Default sorting type is by creation date.
  * One can explicitly define sorting type with setting following property key [tasks.files.sortType] to value:
@@ -24,21 +24,26 @@ import java.util.Arrays;
  *     <li>extension</li>
  *     <li>alphabeth</li>
  * </ul>
- *
+ * <p>
  * Files are being resolved with the Project#file() method, as this way we get correct path to the relative path.
  * Only none hidden files are taken into consideration.
- *
+ * <p>
  * Based on sorting type new subdirectory is created in build target and file is copied to matching subdirectory.
  * Name of the subdirectory is defined with FileDirectoryMapper.
  */
 public class SortFilesTask extends DefaultTask {
 
+  /**
+   * Default configuration of SortFilesTask through the constructor.
+   */
   public SortFilesTask() {
     setGroup("files");
     setDescription("Sorts files in given directory into build/files subdirectories based on the sorting type [date, extension, alphabet]");
   }
 
-  // action that will be executed
+  /**
+   * Main action of the task for sorting files that will be executed.
+   */
   @TaskAction
   public void apply() {
 
@@ -47,7 +52,7 @@ public class SortFilesTask extends DefaultTask {
     FileDirectoryMapper fileMapper = FileDirectoryMapperFactory.getFileDirectoryMapper(getProject());
 
     Arrays.stream(getProject().file(getProject().getExtensions().getExtraProperties().get("tasks.files.folder"))
-        .listFiles())
+            .listFiles())
         .filter(file -> file.isFile() && !file.isHidden())
         .forEach(file -> {
           getProject().getLogger().quiet("Filename: " + file.getName());

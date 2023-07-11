@@ -6,7 +6,7 @@
  * It is applied automatically with the java plugin.
  */
 plugins {
-  id "com.gradle.plugin-publish" version "1.0.0"
+  id "com.gradle.plugin-publish" version "1.2.0" // automatically adds java-gradle-plugin and maven-publish
 }
 
 repositories {
@@ -14,8 +14,8 @@ repositories {
 }
 
 compileJava {
-  sourceCompatibility = '15'
-  targetCompatibility = '15'
+  sourceCompatibility = "17"
+  targetCompatibility = "17"
 }
 
 /**
@@ -31,7 +31,7 @@ testing {
 
     functionalTest(JvmTestSuite) {
       dependencies {
-        implementation project
+        implementation project()
       }
 
       targets {
@@ -59,6 +59,11 @@ dependencies {
  * This information will be shown on the plugin detail page, and will help users to understand which functionality your plugin supports.
  */
 gradlePlugin {
+
+  // Metadata for publishing on the Gradle Plugin Portal. This <b>pluginBundle</b> extension is provided with the <b>com.gradle.plugin-publish</b> Gradle plugin.
+  website = "https://github.com/rivancic/gradle"
+  vcsUrl = "https://github.com/rivancic/gradle"
+
   testSourceSets sourceSets.functionalTest // Returns the source sets executing the functional tests with TestKit. Defaults to project.sourceSets.test.
   plugins {
     create("filesPlugin") {
@@ -66,19 +71,10 @@ gradlePlugin {
       displayName = "Files Sorting Plugin"
       description = "Plugin that can sort provided files based on a particular rule (alphabetically, creation date, extension)"
       implementationClass = "com.rivancic.gradle.plugin.files.FilesPlugin"
+      tags.set(["files", "sorting"])
     }
   }
 }
-
-/**
- * Metadata for publishing on the Gradle Plugin Portal. This <b>pluginBundle</b> extension is provided with the <b>com.gradle.plugin-publish</b> Gradle plugin.
- */
-pluginBundle {
-  website = 'https://github.com/rivancic/gradle'
-  vcsUrl = 'https://github.com/rivancic/gradle'
-  tags = ['files', 'sorting']
-}
-
 
 /**
  * In publishing block we can define specific package repositories where the artifacts will be published.
